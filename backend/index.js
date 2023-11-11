@@ -67,6 +67,30 @@ app.get("/catches/:id", async (request, response) => {
     }
 });
 
+// Route for updating catch
+app.get("/catches/:id", async (request, response) => {
+    try {
+        if (
+            !request.body.species ||
+            !request.body.date
+        ) {
+            return response.status(400).send({
+                message: "Send all required fields: species, date",
+            });
+        }
+        const { id } = request.params;
+        const result = await Catch.findByIdAndUpdate(id, request.body);
+        if (!result) {
+            return response.status(404).json({ message: "Catch not found" });
+        }
+        return response.status(200).send({ message: "Catch updated successfully" });
+    }
+    catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {
