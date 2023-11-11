@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/', (request, response) => {
     console.log(request);
-    return response.status(234).send("Mern Stack Intro");
+    return response.status(234).send("MERN Stack Intro");
 });
 
 // Route for saving new Catch
@@ -84,6 +84,22 @@ app.get("/catches/:id", async (request, response) => {
             return response.status(404).json({ message: "Catch not found" });
         }
         return response.status(200).send({ message: "Catch updated successfully" });
+    }
+    catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
+// Route for deleting catch
+app.delete("/catches/:id", async (request, response) => {
+    try {
+        const { id } = request.params;
+        const result = await Catch.findByIdAndDelete(id);
+        if (!result) {
+            return response.status(404).json({ message: "Catch not found" });
+        }
+        return response.status(200).send({ message: "Catch deleted successfully" });
     }
     catch (error) {
         console.log(error.message);
