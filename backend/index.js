@@ -3,6 +3,7 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import { Catch } from "./models/catchModel.js";
 import catchesRoute from "./routes/catchesRoute.js";
+import cors from "cors";
 
 const app = express();
 
