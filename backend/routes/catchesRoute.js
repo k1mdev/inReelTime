@@ -60,7 +60,7 @@ router.get("/:id", async (request, response) => {
 });
 
 // Route for updating catch
-router.get("/:id", async (request, response) => {
+router.put("/:id", async (request, response) => {
     try {
         if (
             !request.body.species ||
