@@ -3,6 +3,7 @@ import axios from 'Axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/spinner'
+import { useSnackbar } from 'notistack'
 
 const EditCatch = () => {
   const [species, setSpecies] = useState('');
@@ -12,6 +13,7 @@ const EditCatch = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
+  const {enqueueSnackbar} = useSnackbar();
   useEffect(() => {
     setLoading(true);
     axios
@@ -29,6 +31,7 @@ const EditCatch = () => {
         console.log(error);
       });
   }, []);
+
   const handleEditCatch = () => {
     const data = {
       species,
@@ -41,11 +44,13 @@ const EditCatch = () => {
       .put(`http://localhost:5555/catches/${id}`, data)
       .then(() => {
         setLoading(false);
+        enqueueSnackbar('Catch updated successfully', { variant: 'success' });
         navigate('/');
       })
       .catch((error) => {
         setLoading(false);
-        alert('An error occurred. Please check console.');
+        // alert('An error occurred. Please check console.');
+        enqueueSnackbar('Error updating catch', { variant: 'error' });
         console.log(error);
       })
   };

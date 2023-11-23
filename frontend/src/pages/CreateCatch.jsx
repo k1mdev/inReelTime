@@ -3,6 +3,7 @@ import axios from 'Axios'
 import { useNavigate } from 'react-router-dom'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/spinner'
+import { useSnackbar } from 'notistack'
 
 const CreateCatch = () => {
   const [species, setSpecies] = useState('');
@@ -11,6 +12,7 @@ const CreateCatch = () => {
   const [lure, setLure] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const {enqueueSnackbar} = useSnackbar();
   const handleSaveCatch = () => {
     const data = {
       species,
@@ -23,11 +25,13 @@ const CreateCatch = () => {
       .post('http://localhost:5555/catches', data)
       .then(() => {
         setLoading(false);
+        enqueueSnackbar('Catch created successfully', { variant: 'success' });
         navigate('/');
       })
       .catch((error) => {
         setLoading(false);
-        alert('An error occurred. Please check console.');
+        // alert('An error occurred. Please check console.');
+        enqueueSnackbar('Error creating catch', { variant: 'error' });
         console.log(error);
       })
   };
