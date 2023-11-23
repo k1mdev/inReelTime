@@ -22,7 +22,7 @@ const CatchTable = ({catches}) => {
     
     <tbody>
       {catches.map((catchLog, index) => (
-        <tr key={catchLog.id} className='h-8'>
+        <tr key={catchLog._id} className='h-8'>
           <td className='border border-slate-700 rounded-md text-center'>
             {index + 1}
           </td>
