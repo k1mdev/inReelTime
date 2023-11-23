@@ -39,7 +39,7 @@ const ShowCatchLog = () => {
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Date</span>
-            <span>{catchLog.date}</span>
+            <span>{new Date(catchLog.date).toLocaleDateString()}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Length</span>

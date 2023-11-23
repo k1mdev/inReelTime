@@ -31,7 +31,7 @@ const CatchLogModal = ({ catchLog, onClose }) => {
             <div className='flex justify-start items-center gap-x-2'>
                 <FaCalendar className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
-                    {catchLog.date}
+                    {new Date(catchLog.date).toLocaleDateString()}
                 </h2>
             </div>
             <div className='flex justify-start items-center gap-x-2'>

@@ -5,6 +5,7 @@ import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 
 const CatchLogsTable = ({catchLogs}) => {
+
   return (
     <table className='w-full border-separate border-spacing-2'>
     <thead>
@@ -30,7 +31,7 @@ const CatchLogsTable = ({catchLogs}) => {
             {catchLog.species}
           </td>
           <td className='border border-slate-700 rounded-md text-center'>
-            {catchLog.date}
+            {new Date(catchLog.date).toLocaleDateString()}
           </td>
           <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
             {catchLog.length}
