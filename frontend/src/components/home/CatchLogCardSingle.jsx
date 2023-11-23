@@ -11,9 +11,9 @@ import { FaFish } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa6";
 import { FaRulerHorizontal } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
-import CatchModal from './CatchModal'
+import CatchLogModal from './CatchLogModal'
 
-const CatchCardSingle = ({catchLog}) => {
+const CatchLogCardSingle = ({catchLog}) => {
     const [showModal, setShowModal] = useState(false);
     return (
         <div
@@ -66,10 +66,10 @@ const CatchCardSingle = ({catchLog}) => {
                 </Link>
             </div>
             {showModal && (
-                    <CatchModal catchLog={catchLog} onClose={() => setShowModal(false)} />
+                    <CatchLogModal catchLog={catchLog} onClose={() => setShowModal(false)} />
             )}
         </div>
     );
 };
 
-export default CatchCardSingle
+export default CatchLogCardSingle

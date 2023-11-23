@@ -5,12 +5,12 @@ import BackButton from '../components/BackButton'
 import Spinner from '../components/spinner'
 import { useSnackbar } from 'notistack'
 
-const DeleteCatch = () => {
+const DeleteCatchLog = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
   const {enqueueSnackbar} = useSnackbar();
-  const handleDeleteCatch = () => {
+  const handleDeleteCatchLog = () => {
     setLoading(true);
     axios
       .delete(`http://localhost:5555/catches/${id}`)
@@ -36,7 +36,7 @@ const DeleteCatch = () => {
         <h3>Are you sure you want to delete this catch?</h3>
         <button
           className='p-4 bg-red-600 text-white m-8 w-full'
-          onClick={handleDeleteCatch}
+          onClick={handleDeleteCatchLog}
         >
           Yes
         </button>
@@ -45,4 +45,4 @@ const DeleteCatch = () => {
   )
 }
 
-export default DeleteCatch
+export default DeleteCatchLog

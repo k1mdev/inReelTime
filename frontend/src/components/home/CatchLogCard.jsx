@@ -9,17 +9,17 @@ import { FaFish } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa6";
 import { FaRulerHorizontal } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
-import CatchCardSingle from './CatchCardSingle'
+import CatchLogCardSingle from './CatchLogCardSingle'
 
 
-const CatchCard = ({catches}) => {
+const CatchLogCard = ({catchLogs}) => {
   return (
     <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {catches.map((item) => (
-            <CatchCardSingle key={item._id} catchLog={item} />
+        {catchLogs.map((item) => (
+            <CatchLogCardSingle key={item._id} catchLog={item} />
         ))}
     </div>
   )
 }
 
-export default CatchCard
+export default CatchLogCard

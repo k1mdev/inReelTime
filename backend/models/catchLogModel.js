@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const catchSchema = mongoose.Schema(
+const catchLogSchema = mongoose.Schema(
     {
         species: {
             type: String,
@@ -24,4 +24,4 @@ const catchSchema = mongoose.Schema(
     }
 );
 
-export const Catch = mongoose.model('Cat', catchSchema);
+export const CatchLog = mongoose.model('Cat', catchLogSchema);

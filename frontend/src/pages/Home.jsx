@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
-import CatchTable from '../components/home/CatchTable'
-import CatchCard from '../components/home/CatchCard'
+import CatchLogsTable from '../components/home/CatchLogsTable'
+import CatchLogCard from '../components/home/CatchLogCard'
 
 const Home = () => {
-  const [catches, setCatches] = useState([]);
+  const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
   useEffect(() => {
@@ -17,7 +17,7 @@ const Home = () => {
     axios
       .get('http://localhost:5555/catches')
       .then((response) => {
-        setCatches(response.data.data);
+        setCatchLogs(response.data.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -50,9 +50,9 @@ const Home = () => {
       {loading ? (
         <Spinner />
       ) : showType == 'table' ? (
-        <CatchTable catches={catches} />
+        <CatchLogsTable catchLogs={catchLogs} />
       ) : (
-        <CatchCard catches={catches} />
+        <CatchLogCard catchLogs={catchLogs} />
       )}
     
     </div>

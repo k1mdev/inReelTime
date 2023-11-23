@@ -1,5 +1,5 @@
 import express from "express";
-import { Catch } from "../models/catchModel.js";
+import { CatchLog } from "../models/catchLogModel.js";
 
 const router = express.Router();
 
@@ -15,14 +15,14 @@ router.post('/', async (request, response) => {
             });
         }
             
-        const newCatch = {
+        const newCatchLog = {
             species: request.body.species,
             date: request.body.date,
             length: request.body.length,
             lure: request.body.lure,
         }
 
-        const catchLog = await Catch.create(newCatch);
+        const catchLog = await CatchLog.create(newCatchLog);
         return response.status(201).send(catchLog);
     }
     catch (error) {
@@ -34,7 +34,7 @@ router.post('/', async (request, response) => {
 // Route for getting all catches from DB
 router.get("/", async (request, response) => {
     try {
-        const catchLog = await Catch.find({});
+        const catchLog = await CatchLog.find({});
         return response.status(200).json({
             count: catchLog.length,
             data: catchLog,
@@ -50,7 +50,7 @@ router.get("/", async (request, response) => {
 router.get("/:id", async (request, response) => {
     try {
         const { id } = request.params;
-        const catchLog = await Catch.findById(id);
+        const catchLog = await CatchLog.findById(id);
         return response.status(200).json(catchLog);
     }
     catch (error) {
@@ -71,7 +71,7 @@ router.put("/:id", async (request, response) => {
             });
         }
         const { id } = request.params;
-        const result = await Catch.findByIdAndUpdate(id, request.body);
+        const result = await CatchLog.findByIdAndUpdate(id, request.body);
         if (!result) {
             return response.status(404).json({ message: "Catch not found" });
         }
@@ -87,7 +87,7 @@ router.put("/:id", async (request, response) => {
 router.delete("/:id", async (request, response) => {
     try {
         const { id } = request.params;
-        const result = await Catch.findByIdAndDelete(id);
+        const result = await CatchLog.findByIdAndDelete(id);
         if (!result) {
             return response.status(404).json({ message: "Catch not found" });
         }

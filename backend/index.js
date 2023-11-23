@@ -1,8 +1,8 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import { Catch } from "./models/catchModel.js";
-import catchesRoute from "./routes/catchesRoute.js";
+import { CatchLog } from "./models/catchLogModel.js";
+import catchLogsRoute from "./routes/catchLogsRoute.js";
 import cors from "cors";
 
 const app = express();
@@ -27,7 +27,7 @@ app.get('/', (request, response) => {
     return response.status(234).send("MERN Stack Intro");
 });
 
-app.use("/catches", catchesRoute);
+app.use("/catches", catchLogsRoute);
 
 mongoose
     .connect(mongoDBURL)

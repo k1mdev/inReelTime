@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/spinner'
 
-const ShowCatch = () => {
+const ShowCatchLog = () => {
   const [catchLog, setCatchLog] = useState({});
   const [loading, setLoading] = useState(false);
   const {id} = useParams();
@@ -64,4 +64,4 @@ const ShowCatch = () => {
   )
 }
 
-export default ShowCatch
+export default ShowCatchLog

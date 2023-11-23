@@ -4,7 +4,7 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 
-const CatchTable = ({catches}) => {
+const CatchLogsTable = ({catchLogs}) => {
   return (
     <table className='w-full border-separate border-spacing-2'>
     <thead>
@@ -21,7 +21,7 @@ const CatchTable = ({catches}) => {
     </thead>
     
     <tbody>
-      {catches.map((catchLog, index) => (
+      {catchLogs.map((catchLog, index) => (
         <tr key={catchLog._id} className='h-8'>
           <td className='border border-slate-700 rounded-md text-center'>
             {index + 1}
@@ -59,4 +59,4 @@ const CatchTable = ({catches}) => {
   )
 }
 
-export default CatchTable
+export default CatchLogsTable
