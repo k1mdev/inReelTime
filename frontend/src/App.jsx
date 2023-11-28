@@ -5,9 +5,12 @@ import CreateCatchLog from './pages/CreateCatchLog'
 import ShowCatchLog from './pages/ShowCatchLog'
 import EditCatchLog from './pages/EditCatchLog'
 import DeleteCatchLog from './pages/DeleteCatchLog'
+import Header from './components/Header'
 
 const App = () => {
   return (
+    <>
+    <Header />
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/catches/create' element={<CreateCatchLog />} />
@@ -15,6 +18,7 @@ const App = () => {
       <Route path='/catches/edit/:id' element={<EditCatchLog />} />
       <Route path='/catches/delete/:id' element={<DeleteCatchLog />} />
     </Routes>
+    </>
   )
 }
 
