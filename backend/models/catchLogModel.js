@@ -24,4 +24,4 @@ const catchLogSchema = mongoose.Schema(
     }
 );
 
-export const CatchLog = mongoose.model('Cat', catchLogSchema);
+export const CatchLog = mongoose.model('CatchLog', catchLogSchema);
