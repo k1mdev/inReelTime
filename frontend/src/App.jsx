@@ -6,19 +6,25 @@ import ShowCatchLog from './pages/ShowCatchLog'
 import EditCatchLog from './pages/EditCatchLog'
 import DeleteCatchLog from './pages/DeleteCatchLog'
 import Header from './components/Header'
+import Datebar from './components/Datebar'
 
 const App = () => {
   return (
-    <>
-    <Header />
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/catches/create' element={<CreateCatchLog />} />
-      <Route path='/catches/details/:id' element={<ShowCatchLog />} />
-      <Route path='/catches/edit/:id' element={<EditCatchLog />} />
-      <Route path='/catches/delete/:id' element={<DeleteCatchLog />} />
-    </Routes>
-    </>
+    <div>
+      <Header />
+      <div className='flex'>
+        <span className='flex-none'><Datebar /></span>
+        <span className='flex-1'>
+          <Routes >
+          <Route path='/' element={<Home />} />
+          <Route path='/catches/create' element={<CreateCatchLog />} />
+          <Route path='/catches/details/:id' element={<ShowCatchLog />} />
+          <Route path='/catches/edit/:id' element={<EditCatchLog />} />
+          <Route path='/catches/delete/:id' element={<DeleteCatchLog />} />
+          </Routes>
+        </span>
+      </div>
+    </div>
   )
 }
 
