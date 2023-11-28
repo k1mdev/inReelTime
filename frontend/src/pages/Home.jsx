@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/catches')
+      .get('http://localhost:5555/catchLogs')
       .then((response) => {
         setCatchLogs(response.data.data);
         setLoading(false);
@@ -25,6 +25,7 @@ const Home = () => {
         setLoading(false);
       });
   }, []);
+  
   return (
     <div className='p-4'>
       <div className='flex justify-center items-center gap-x-4'>

@@ -13,7 +13,7 @@ const DeleteCatchLog = () => {
   const handleDeleteCatchLog = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5555/catches/${id}`)
+      .delete(`http://localhost:5555/catchLogs/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Catch deleted successfully', { variant: 'success' });

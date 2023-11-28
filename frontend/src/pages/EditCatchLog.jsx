@@ -17,7 +17,7 @@ const EditCatchLog = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/catches/${id}`)
+      .get(`http://localhost:5555/catchLogs/${id}`)
       .then((response) => {
         setSpecies(response.data.species);
         setDate(response.data.date);

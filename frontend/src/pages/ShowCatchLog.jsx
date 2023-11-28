@@ -11,7 +11,7 @@ const ShowCatchLog = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/catches/${id}`)
+      .get(`http://localhost:5555/catchLogs/${id}`)
       .then((response) => {
         setCatchLog(response.data);
         setLoading(false);

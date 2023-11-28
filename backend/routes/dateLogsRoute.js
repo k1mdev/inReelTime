@@ -16,10 +16,7 @@ router.post('/', async (request, response) => {
         }
             
         const newDateLog = {
-            species: request.body.species,
-            date: request.body.date,
-            length: request.body.length,
-            lure: request.body.lure,
+            date: request.body.date
         }
 
         const dateLog = await DateLog.create(newDateLog);

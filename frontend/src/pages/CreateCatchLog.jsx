@@ -22,7 +22,7 @@ const CreateCatchLog = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/catches', data)
+      .post('http://localhost:5555/catchLogs', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Catch created successfully', { variant: 'success' });

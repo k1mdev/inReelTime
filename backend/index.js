@@ -27,7 +27,7 @@ app.get('/', (request, response) => {
     return response.status(234).send("MERN Stack Intro");
 });
 
-app.use("/catches", catchLogsRoute);
+app.use("/catchLogs", catchLogsRoute);
 
 mongoose
     .connect(mongoDBURL)
