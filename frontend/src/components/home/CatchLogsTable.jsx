@@ -4,11 +4,16 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 
-const CatchLogsTable = ({catchLogs}) => {
+const CatchLogsTable = ({catchLogs, selectedDate}) => {
 
   // console.log("From table: ");
   // console.log(catchLogs);
   // console.log(typeof(catchLogs));
+
+
+  const unfiltered = [...catchLogs];
+  const filtered = selectedDate == null ? unfiltered :unfiltered.filter(catchLog => catchLog.date == selectedDate);
+
 
   return (
     <table className='w-full border-separate border-spacing-2'>
@@ -26,7 +31,7 @@ const CatchLogsTable = ({catchLogs}) => {
     </thead>
     
     <tbody>
-      {catchLogs.map((catchLog, index) => (
+      {filtered.map((catchLog, index) => (
         <tr key={catchLog._id} className='h-8'>
           <td className='border border-slate-700 rounded-md text-center'>
             {index + 1}

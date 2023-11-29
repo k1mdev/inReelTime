@@ -21,7 +21,7 @@ const App = () => {
     else {
       setSelectedDate(date);
     }
-    console.log("Selected date", selectedDate);
+    // console.log("Selected date", selectedDate);
   }
 
   return (
@@ -32,7 +32,7 @@ const App = () => {
         <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate}/></span>
         <span className='flex-1'>
           <Routes >
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home selectedDate={selectedDate}/>} />
           <Route path='/catches/create' element={<CreateCatchLog />} />
           <Route path='/catches/details/:id' element={<ShowCatchLog />} />
           <Route path='/catches/edit/:id' element={<EditCatchLog />} />

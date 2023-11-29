@@ -8,7 +8,7 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 
-const Home = () => {
+const Home = ({selectedDate}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
@@ -51,7 +51,7 @@ const Home = () => {
       {loading ? (
         <Spinner />
       ) : showType == 'table' ? (
-        <CatchLogsTable catchLogs={catchLogs} />
+        <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
       ) : (
         <CatchLogCard catchLogs={catchLogs} />
       )}
