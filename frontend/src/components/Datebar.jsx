@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Datebar = () => {
+const Datebar = ({selectedDate, handleSelectDate}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -24,7 +24,8 @@ const Datebar = () => {
       .then((response) => {
         setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
         setLoading(false);
-        navigate('/');
+        // Does this need window.location too?
+        // navigate('/') was originally abv but produced not defined warning
       })
       .catch((error) => {
         console.log(error);
@@ -44,7 +45,7 @@ const Datebar = () => {
         {loading ? (
           <Spinner />
         ) : (
-          <DatePicker catchLogs={catchLogs}/>
+          <DatePicker catchLogs={catchLogs} selectedDate={selectedDate} handleSelectDate={handleSelectDate}/>
         )}
         </div>
     </div>

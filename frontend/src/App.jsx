@@ -7,14 +7,29 @@ import EditCatchLog from './pages/EditCatchLog'
 import DeleteCatchLog from './pages/DeleteCatchLog'
 import Header from './components/Header'
 import Datebar from './components/Datebar'
+import e from 'cors'
 
 const App = () => {
+
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleSelectDate = (date) => {
+    if (date == selectedDate) {
+      setSelectedDate(null)
+    }
+    else {
+      setSelectedDate(date);
+    }
+    console.log("Selected date", selectedDate);
+  }
 
   return (
     <div>
       <Header />
       <div className='flex'>
-        <span className='flex-none'><Datebar /></span>
+        {/* Prop drilling passing from here to Datebar to DatePicker */}
+        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate}/></span>
         <span className='flex-1'>
           <Routes >
           <Route path='/' element={<Home />} />

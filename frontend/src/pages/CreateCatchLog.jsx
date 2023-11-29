@@ -26,7 +26,7 @@ const CreateCatchLog = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Catch created successfully', { variant: 'success' });
-        // navigate('/');
+        // Full page refreshes including date bar
         window.location = '/';
       })
       .catch((error) => {
