@@ -10,6 +10,7 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 import DatePicker from './DatePicker';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -23,6 +24,7 @@ const Datebar = () => {
       .then((response) => {
         setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
         setLoading(false);
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);

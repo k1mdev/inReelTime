@@ -17,7 +17,8 @@ const DeleteCatchLog = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Catch deleted successfully', { variant: 'success' });
-        navigate('/');
+        // navigate('/');
+        window.location = '/';
       })
       .catch((error) => {
         setLoading(false);
