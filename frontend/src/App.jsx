@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import CreateCatchLog from './pages/CreateCatchLog'
@@ -9,6 +9,7 @@ import Header from './components/Header'
 import Datebar from './components/Datebar'
 
 const App = () => {
+
   return (
     <div>
       <Header />

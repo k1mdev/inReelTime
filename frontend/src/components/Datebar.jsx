@@ -9,12 +9,12 @@ import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
+import DatePicker from './DatePicker';
 
 
 
 const Datebar = () => {
   const [catchLogs, setCatchLogs] = useState([]);
-  const [uniqueDates, setUniqueDates] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -30,16 +30,6 @@ const Datebar = () => {
       });
   }, []);
   
-  useEffect(() => {
-    if (catchLogs.length > 0) {
-      const uniqueDatesSet = new Set(catchLogs.map((item) => item.date));
-      setUniqueDates([...uniqueDatesSet]);
-    }
-  }, [catchLogs]);
-
-  // const uniqueDates = new Set(catchLogs.map((item) => item.date));
-  
-  const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
 
   return (
     // 64px comes from h-16 = height: 64px of Header
@@ -52,9 +42,7 @@ const Datebar = () => {
         {loading ? (
           <Spinner />
         ) : (
-          uniqueDates.map((date, index) => (
-            <h2 key={index}>{new Date(date).toLocaleDateString('en-US', options)}</h2>
-        ))
+          <DatePicker catchLogs={catchLogs}/>
         )}
         </div>
     </div>

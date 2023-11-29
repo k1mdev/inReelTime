@@ -6,6 +6,10 @@ import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 
 const CatchLogsTable = ({catchLogs}) => {
 
+  // console.log("From table: ");
+  // console.log(catchLogs);
+  // console.log(typeof(catchLogs));
+
   return (
     <table className='w-full border-separate border-spacing-2'>
     <thead>
