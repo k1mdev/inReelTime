@@ -4,6 +4,11 @@ import { FaFish } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa6";
 import { FaRulerHorizontal } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
+import { Link } from 'react-router-dom';
+
+import { AiOutlineEdit } from 'react-icons/ai'
+import { BsInfoCircle } from 'react-icons/bs'
+import { MdOutlineDelete } from 'react-icons/md'
 
 const CatchLogModal = ({ catchLog, onClose }) => {
   return (
@@ -19,14 +24,16 @@ const CatchLogModal = ({ catchLog, onClose }) => {
                 className='absolute right-6 top-6 text-3xl text-red-600 cursor-pointer'
                 onClick={onClose}
             />
-            <h4 className='my-2 text-gray-500'>
-                {catchLog._id}
-            </h4>
-            <div className='flex justify-start items-center gap-x-2'>
-                <FaFish className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
+            <div className='flex justify-center items-baseline'>
+                <h4 className='my-2 text-black text-4xl text-center pr-6'>
                     {catchLog.species}
-                </h2>
+                </h4>
+                <Link to={`/catches/edit/${catchLog._id}`}>
+                    <AiOutlineEdit className='text-2xl text-yellow-600 hover:text-black'/>
+                </Link>
+                <Link to={`/catches/delete/${catchLog._id}`}>
+                    <MdOutlineDelete className='text-2xl text-red-600 hover:text-black'/>
+                </Link>
             </div>
             <div className='flex justify-start items-center gap-x-2'>
                 <FaCalendar className='text-red-300 text-2xl' />
@@ -45,6 +52,12 @@ const CatchLogModal = ({ catchLog, onClose }) => {
                 <h2 className='my-1'>
                     {catchLog.lure}
                 </h2>
+            </div>
+            <div className='flex justify-between items-center gap-x-2 mt-4 p-4'>
+                {/* <Link to={`/catches/details/${catchLog._id}`}>
+                    <BsInfoCircle className='text-2xl text-green-800 hover:text-black'/>
+                </Link> */}
+
             </div>
         </div>
     </div>

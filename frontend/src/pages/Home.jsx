@@ -11,7 +11,7 @@ import CatchLogCard from '../components/home/CatchLogCard'
 const Home = ({selectedDate}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState('table');
+  const [showType, setShowType] = useState('card');
   useEffect(() => {
     setLoading(true);
     axios
@@ -54,14 +54,20 @@ const Home = ({selectedDate}) => {
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
       </div>
-      {loading ? (
-        <Spinner />
-      ) : showType == 'table' ? (
-        <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
-      ) : (
-        <CatchLogCard catchLogs={catchLogs} />
-      )}
-    
+      {/* 64px comes from h-16 = height: 64px of Header */}
+      {/* 100px is height of "Catch List" text row */}
+      {/* 32px is height of table/card select */}
+      {/* 36px is height of "All Catches" text */}
+      {/* 16px is padding distance, x2 for top and bottom */}
+      <div className='h-[calc(100vh-64px-100px-32px-36px-32px)] overflow-y-auto'>
+        {loading ? (
+          <Spinner />
+        ) : showType == 'table' ? (
+          <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
+        ) : (
+          <CatchLogCard catchLogs={catchLogs} />
+        )}
+      </div>
     </div>
   )
 }

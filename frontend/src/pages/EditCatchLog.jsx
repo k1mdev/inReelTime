@@ -41,7 +41,7 @@ const EditCatchLog = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/catches/${id}`, data)
+      .put(`http://localhost:5555/catchLogs/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Catch updated successfully', { variant: 'success' });
