@@ -7,6 +7,7 @@ import EditCatchLog from './pages/EditCatchLog'
 import DeleteCatchLog from './pages/DeleteCatchLog'
 import Header from './components/Header'
 import Datebar from './components/Datebar'
+import EditCatchLogModal from './components/home/EditCatchLogModal'
 import e from 'cors'
 
 const App = () => {
@@ -35,7 +36,7 @@ const App = () => {
           <Route path='/' element={<Home selectedDate={selectedDate}/>} />
           <Route path='/catches/create' element={<CreateCatchLog />} />
           <Route path='/catches/details/:id' element={<ShowCatchLog />} />
-          <Route path='/catches/edit/:id' element={<EditCatchLog />} />
+          <Route path='/catches/edit/:id' element={<EditCatchLogModal />} />
           <Route path='/catches/delete/:id' element={<DeleteCatchLog />} />
           </Routes>
         </span>

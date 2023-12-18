@@ -29,7 +29,7 @@ const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
     useEffect(() => {
     //   setLoading(true);
       axios
-        .get(`http://localhost:5555/catchLogs/${catchLog._id}`)
+        .get(`http://localhost:5555/catchLogs/${id}`)
         .then((response) => {
           setSpecies(response.data.species);
           setDate(response.data.date);
@@ -53,11 +53,11 @@ const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
       };
     //   setLoading(true);
       axios
-        .put(`http://localhost:5555/catchLogs/${catchLog._id}`, data)
+        .put(`http://localhost:5555/catchLogs/${id}`, data)
         .then(() => {
         //   setLoading(false);
           enqueueSnackbar('Catch updated successfully', { variant: 'success' });
-          setShowEditModal(false);
+        //   setShowEditModal(false);
           window.location = '/';
         })
         .catch((error) => {
@@ -70,7 +70,7 @@ const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
   return (
     <div
         className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'
-        onClick={onClose}
+        onClick={() => navigate('/')}
     >
         <div
             onClick={(e) => e.stopPropagation()}

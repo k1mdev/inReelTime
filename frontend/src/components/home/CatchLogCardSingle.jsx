@@ -56,10 +56,17 @@ const CatchLogCardSingle = ({catchLog}) => {
                 <Link to={`/catches/details/${catchLog._id}`}>
                     <BsInfoCircle className='text-2xl text-green-800 hover:text-black'/>
                 </Link>
-                <AiOutlineEdit
-                    className='text-2xl text-yellow-600 hover:text-black'
-                    onClick={() => setShowEditModal(true)}
-                />
+
+                <Link to={`/catches/edit/${catchLog._id}`}>
+                    <AiOutlineEdit
+                        className='text-2xl text-yellow-600 hover:text-black'
+                        onClick={() => setShowEditModal(true)}
+                    />
+                </Link>
+
+                
+
+
                 <Link to={`/catches/delete/${catchLog._id}`}>
                     <MdOutlineDelete className='text-2xl text-red-600 hover:text-black'/>
                 </Link>
