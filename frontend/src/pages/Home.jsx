@@ -65,7 +65,8 @@ const Home = ({selectedDate}) => {
         ) : showType == 'table' ? (
           <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
         ) : (
-          <CatchLogCard catchLogs={catchLogs} />
+          //prop drilling from here to CatchLogCard to CatchLogCardSingle to EditCatchLogModal/DeleteCatchLogModal, catchLogs needed only for first layer
+          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} />
         )}
       </div>
     </div>

@@ -12,11 +12,11 @@ import { GiFishingHook } from "react-icons/gi";
 import CatchLogCardSingle from './CatchLogCardSingle'
 
 
-const CatchLogCard = ({catchLogs}) => {
+const CatchLogCard = ({catchLogs, setCatchLogs}) => {
   return (
     <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {catchLogs.map((item) => (
-            <CatchLogCardSingle key={item._id} catchLog={item} />
+            <CatchLogCardSingle catchLogs={catchLogs} setCatchLogs={setCatchLogs} key={item._id} catchLog={item} />
         ))}
     </div>
   )

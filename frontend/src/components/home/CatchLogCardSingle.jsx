@@ -13,10 +13,11 @@ import { FaRulerHorizontal } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
 import CatchLogModal from './CatchLogModal'
 import EditCatchLogModal from './EditCatchLogModal'
+import DeleteCatchLogModal from './DeleteCatchLogModal'
 
-const CatchLogCardSingle = ({catchLog}) => {
-    const [showModal, setShowModal] = useState(false);
+const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     return (
         <div
             key={catchLog._id}
@@ -53,29 +54,21 @@ const CatchLogCardSingle = ({catchLog}) => {
                 </h2>
             </div>
             <div className='flex justify-between items-center gap-x-2 mt-4 p-4'>
-                <Link to={`/catches/details/${catchLog._id}`}>
-                    <BsInfoCircle className='text-2xl text-green-800 hover:text-black'/>
-                </Link>
+                <AiOutlineEdit
+                    className='text-2xl text-yellow-600 hover:text-black cursor-pointer'
+                    onClick={() => setShowEditModal(true)}
+                />
 
-                <Link to={`/catches/edit/${catchLog._id}`}>
-                    <AiOutlineEdit
-                        className='text-2xl text-yellow-600 hover:text-black'
-                        onClick={() => setShowEditModal(true)}
-                    />
-                </Link>
-
-                
-
-
-                <Link to={`/catches/delete/${catchLog._id}`}>
-                    <MdOutlineDelete className='text-2xl text-red-600 hover:text-black'/>
-                </Link>
+                <MdOutlineDelete
+                    className='text-2xl text-red-600 hover:text-black cursor-pointer'
+                    onClick={() => setShowDeleteModal(true)}
+                />
             </div>
-            {showModal && (
-                    <CatchLogModal catchLog={catchLog} onClose={() => setShowModal(false)} />
-            )}
             {showEditModal && (
-                    <EditCatchLogModal catchLog={catchLog} onClose={() => setShowEditModal(false)} setShowEditModal={setShowEditModal} />
+                    <EditCatchLogModal setCatchLogs={setCatchLogs} catchLog={catchLog} onClose={() => setShowEditModal(false)} setShowEditModal={setShowEditModal}/>
+            )}
+            {showDeleteModal && (
+                    <DeleteCatchLogModal setCatchLogs={setCatchLogs} catchLog={catchLog} onClose={() => setShowDeleteModal(false)} setShowDeleteModal={setShowDeleteModal}/>
             )}
         </div>
     );

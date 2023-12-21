@@ -1,30 +1,14 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'Axios'
-import { useNavigate, useParams } from 'react-router-dom'
-import BackButton from '../BackButton'
-import Spinner from '../spinner'
 import { useSnackbar } from 'notistack'
 
-
-import { AiOutlineClose } from 'react-icons/ai';
-import { FaFish } from "react-icons/fa6";
-import { FaCalendar } from "react-icons/fa6";
-import { FaRulerHorizontal } from "react-icons/fa6";
-import { GiFishingHook } from "react-icons/gi";
-import { Link } from 'react-router-dom';
-
-import { AiOutlineEdit } from 'react-icons/ai'
-import { BsInfoCircle } from 'react-icons/bs'
-import { MdOutlineDelete } from 'react-icons/md'
-
-const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
+const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }) => {
     const [species, setSpecies] = useState('');
     const [date, setDate] = useState(new Date());
     const [length, setLength] = useState(0);
     const [lure, setLure] = useState('');
     // const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const {id} = useParams();
+    const id = catchLog._id;
     const {enqueueSnackbar} = useSnackbar();
     useEffect(() => {
     //   setLoading(true);
@@ -56,9 +40,10 @@ const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
         .put(`http://localhost:5555/catchLogs/${id}`, data)
         .then(() => {
         //   setLoading(false);
-          enqueueSnackbar('Catch updated successfully', { variant: 'success' });
-        //   setShowEditModal(false);
-          window.location = '/';
+            setCatchLogs((prevLogs) => prevLogs.map((catchLog) => (catchLog._id === id ? {...catchLog, ...data} : catchLog)));
+            enqueueSnackbar('Catch updated successfully', { variant: 'success' });
+            setShowEditModal(false);
+          
         })
         .catch((error) => {
         //   setLoading(false);
@@ -70,7 +55,7 @@ const EditCatchLogModal = ({ catchLog, onClose, setShowEditModal }) => {
   return (
     <div
         className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'
-        onClick={() => navigate('/')}
+        onClick={onClose}
     >
         <div
             onClick={(e) => e.stopPropagation()}
