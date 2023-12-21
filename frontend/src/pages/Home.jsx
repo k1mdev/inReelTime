@@ -7,11 +7,13 @@ import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
+import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 
 const Home = ({selectedDate}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('card');
+  const [showCreateModal, setShowCreateModal] = useState(false);
   useEffect(() => {
     setLoading(true);
     axios
@@ -50,9 +52,13 @@ const Home = ({selectedDate}) => {
       </div>
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Catch List</h1>
-        <Link to='/catches/create'>
+        {/* <Link to='/catches/create'>
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
-        </Link>
+        </Link> */}
+        <MdOutlineAddBox
+          className='text-sky-800 text-4xl'
+          onClick={() => setShowCreateModal(true)}
+        />
       </div>
       {/* 64px comes from h-16 = height: 64px of Header */}
       {/* 100px is height of "Catch List" text row */}
@@ -69,6 +75,9 @@ const Home = ({selectedDate}) => {
           <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} />
         )}
       </div>
+      {showCreateModal && (
+        <CreateCatchLogModal setCatchLogs={setCatchLogs} onClose={() => setShowCreateModal(false)} setShowCreateModal={setShowCreateModal} />
+      )}
     </div>
   )
 }
