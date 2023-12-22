@@ -79,6 +79,7 @@ const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }
                     <input
                         type='date'
                         value={date}
+                        // Saves date in ISO string format YYYY-MM-DD
                         onChange={(e) => setDate(e.target.value)}
                         className='border-2 border-gray-500 px-4 py-2 w-full'
                     />

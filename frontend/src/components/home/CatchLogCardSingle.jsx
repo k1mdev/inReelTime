@@ -18,6 +18,13 @@ import DeleteCatchLogModal from './DeleteCatchLogModal'
 const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    // Format date from ISO YYYY-MM-DD to MM-DD-YYYY
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-');
+        return `${month}/${day}/${year}`;
+    }
+
     return (
         <div
             key={catchLog._id}
@@ -38,7 +45,7 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
             <div className='flex justify-start items-center gap-x-2'>
                 <FaCalendar className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
-                    {new Date(catchLog.date).toLocaleDateString()}
+                    {formatDate(catchLog.date)}
                 </h2>
             </div>
             <div className='flex justify-start items-center gap-x-2'>

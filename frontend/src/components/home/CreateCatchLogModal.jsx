@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
     const [species, setSpecies] = useState('');
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [length, setLength] = useState(0);
     const [lure, setLure] = useState('');
     // const [loading, setLoading] = useState(false);
@@ -31,6 +31,7 @@ const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
             enqueueSnackbar('Catch created successfully', { variant: 'success' });
             setShowCreateModal(false);
             // window.location = '/';
+            // Can't use navigate like in reference bc it navigates to same (root) route which it's alr on
         })
         .catch((error) => {
             // setLoading(false);
@@ -39,6 +40,10 @@ const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
             console.log(error);
         })
     };
+
+
+    console.log("Created date: ", date);
+
 
   return (
     <div
@@ -66,6 +71,7 @@ const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
                     <input
                         type='date'
                         value={date}
+                        // Saves date in ISO string format YYYY-MM-DD
                         onChange={(e) => setDate(e.target.value)}
                         className='border-2 border-gray-500 px-4 py-2 w-full'
                     />

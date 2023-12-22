@@ -34,7 +34,7 @@ const Home = ({selectedDate}) => {
   return (
     <div className='p-4'>
       <div className='text-center font-medium text-3xl'>
-        {selectedDate == null ? 'All Catches' : new Date(selectedDate).toLocaleDateString('en-US', options)}
+        {selectedDate == null ? 'All Catches' : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options)}
       </div>
       <div className='flex justify-center items-center gap-x-4'>
         <button
@@ -72,7 +72,7 @@ const Home = ({selectedDate}) => {
           <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
         ) : (
           //prop drilling from here to CatchLogCard to CatchLogCardSingle to EditCatchLogModal/DeleteCatchLogModal, catchLogs needed only for first layer
-          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} />
+          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} selectedDate={selectedDate} />
         )}
       </div>
       {showCreateModal && (

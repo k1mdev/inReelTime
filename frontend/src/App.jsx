@@ -15,14 +15,16 @@ const App = () => {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
+
   const handleSelectDate = (date) => {
     if (date == selectedDate) {
       setSelectedDate(null)
     }
     else {
-      setSelectedDate(date);
+      // Store selected date as ISO string format YYYY-MM-DD
+      setSelectedDate(new Date(date).toISOString().split('T')[0]);
     }
-    // console.log("Selected date", selectedDate);
+    // console.log("Selected date (App):", selectedDate);
   }
 
   return (

@@ -12,10 +12,16 @@ import { GiFishingHook } from "react-icons/gi";
 import CatchLogCardSingle from './CatchLogCardSingle'
 
 
-const CatchLogCard = ({catchLogs, setCatchLogs}) => {
+const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate}) => {
+
+  
+  const unfiltered = [...catchLogs];
+  // Comparison valid bc compares ISO to ISO format
+  const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
+
   return (
     <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {catchLogs.map((item) => (
+        {filtered.map((item) => (
             <CatchLogCardSingle catchLogs={catchLogs} setCatchLogs={setCatchLogs} key={item._id} catchLog={item} />
         ))}
     </div>
