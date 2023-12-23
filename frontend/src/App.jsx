@@ -22,17 +22,21 @@ const App = () => {
     }
     else {
       // Store selected date as ISO string format YYYY-MM-DD
+      // IDET it needs the conversions, check the input and return formats
       setSelectedDate(new Date(date).toISOString().split('T')[0]);
     }
     // console.log("Selected date (App):", selectedDate);
   }
 
+  console.log("App Sel Date: ", selectedDate);
+
   return (
     <div>
+      {/* Prop drilling */}
       <Header />
       <div className='flex'>
         {/* Prop drilling passing from here to Datebar to DatePicker */}
-        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate}/></span>
+        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate} /></span>
         <span className='flex-1'>
           <Routes >
           <Route path='/' element={<Home selectedDate={selectedDate}/>} />

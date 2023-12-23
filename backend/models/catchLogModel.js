@@ -7,7 +7,7 @@ const catchLogSchema = mongoose.Schema(
             required: true,
         },
         date: {
-            // Date stored in ISO format YYYY-MM-DD
+            // Date stored in ISO string format YYYY-MM-DD
             type: String,
             required: true,
         },
