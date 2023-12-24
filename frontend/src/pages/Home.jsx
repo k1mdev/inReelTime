@@ -12,7 +12,6 @@ import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 const Home = ({selectedDate}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState('card');
   const [showCreateModal, setShowCreateModal] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -32,44 +31,29 @@ const Home = ({selectedDate}) => {
 
   
   return (
-    <div className='p-4'>
-      <div className='text-center font-medium text-3xl'>
-        {selectedDate == null ? 'All Catches' : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options)}
-      </div>
-      <div className='flex justify-center items-center gap-x-4'>
-        <button
-          className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg '
-          onClick={() => setShowType('table')}
-        >
-          Table
-        </button>
-        <button
-          className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg '
-          onClick={() => setShowType('card')}
-        >
-          Card
-        </button>
-      </div>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>Catch List</h1>
-        {/* <Link to='/catches/create'>
-          <MdOutlineAddBox className='text-sky-800 text-4xl' />
-        </Link> */}
+    <div className='p-4 pb-2 flex flex-col'>
+      <div className='flex justify-between mb-4'>
+        <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2'>
+          {selectedDate == null ? 'All Catches' : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options)}
+        </span>
         <MdOutlineAddBox
-          className='text-sky-800 text-4xl'
+          className='text-sky-800 text-5xl mr-8'
           onClick={() => setShowCreateModal(true)}
         />
       </div>
+
       {/* 64px comes from h-16 = height: 64px of Header */}
       {/* 100px is height of "Catch List" text row */}
       {/* 32px is height of table/card select */}
       {/* 36px is height of "All Catches" text */}
       {/* 16px is padding distance, x2 for top and bottom */}
-      <div className='h-[calc(100vh-64px-100px-32px-36px-32px)] overflow-y-auto'>
+      {/* UPDATE */}
+      {/* Removed "Catch List" */}
+      {/* Removed table/card select */}
+      {/* Subtracted additional 20px (manually guessed & checked) accounting for padding and new mb under "All Catches" row*/}
+      <div className='h-[calc(100vh-64px-36px-32px-20px)] overflow-y-auto'>
         {loading ? (
           <Spinner />
-        ) : showType == 'table' ? (
-          <CatchLogsTable catchLogs={catchLogs} selectedDate={selectedDate}/>
         ) : (
           //prop drilling from here to CatchLogCard to CatchLogCardSingle to EditCatchLogModal/DeleteCatchLogModal, catchLogs needed only for first layer
           <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} selectedDate={selectedDate} />

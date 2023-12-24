@@ -19,13 +19,22 @@ const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate}) => {
   // Comparison valid bc compares ISO to ISO format
   const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
 
-  return (
-    <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {filtered.map((item) => (
-            <CatchLogCardSingle catchLogs={catchLogs} setCatchLogs={setCatchLogs} key={item._id} catchLog={item} />
-        ))}
-    </div>
-  )
+  if (filtered.length == 0) {
+    return (
+      <div className='flex items-center justify-center pt-8'>
+        <h2>No Logged Catches</h2>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          {filtered.map((item) => (
+              <CatchLogCardSingle catchLogs={catchLogs} setCatchLogs={setCatchLogs} key={item._id} catchLog={item} />
+          ))}
+      </div>
+    )
+  }
 }
 
 export default CatchLogCard
