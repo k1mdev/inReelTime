@@ -32,7 +32,7 @@ const Home = ({selectedDate}) => {
   
   return (
     <div className='h-[calc(100vh-64px)] p-0 flex flex-col'>
-      <div className='flex justify-between items-center mt-3 mb-3'>
+      <div className='flex justify-between items-center mt-4 mb-4'>
         <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2'>
           {selectedDate == null ? 'All Catches' : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options)}
         </span>
@@ -49,7 +49,7 @@ const Home = ({selectedDate}) => {
       {/* (Removed) 16px is padding distance, x2 for top and bottom */}
       {/* UPDATE */}
       {/* Subtracted additional 20px (manually guessed & checked) accounting for padding and new mb under "All Catches" row*/}
-      <div className='h-[calc(100vh-64px-36px)] overflow-y-auto mb-3'>
+      <div className='h-[calc(100vh-64px-36px)] overflow-y-auto'>
         {loading ? (
           <Spinner />
         ) : (
