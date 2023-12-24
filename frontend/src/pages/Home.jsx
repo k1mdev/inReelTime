@@ -31,8 +31,8 @@ const Home = ({selectedDate}) => {
 
   
   return (
-    <div className='p-4 pb-2 flex flex-col'>
-      <div className='flex justify-between mb-4'>
+    <div className='h-[calc(100vh-64px)] p-0 flex flex-col'>
+      <div className='flex justify-between items-center mt-3 mb-3'>
         <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2'>
           {selectedDate == null ? 'All Catches' : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options)}
         </span>
@@ -43,15 +43,13 @@ const Home = ({selectedDate}) => {
       </div>
 
       {/* 64px comes from h-16 = height: 64px of Header */}
-      {/* 100px is height of "Catch List" text row */}
-      {/* 32px is height of table/card select */}
+      {/* (Removed) 100px is height of "Catch List" text row */}
+      {/* (Removed) 32px is height of table/card select */}
       {/* 36px is height of "All Catches" text */}
-      {/* 16px is padding distance, x2 for top and bottom */}
+      {/* (Removed) 16px is padding distance, x2 for top and bottom */}
       {/* UPDATE */}
-      {/* Removed "Catch List" */}
-      {/* Removed table/card select */}
       {/* Subtracted additional 20px (manually guessed & checked) accounting for padding and new mb under "All Catches" row*/}
-      <div className='h-[calc(100vh-64px-36px-32px-20px)] overflow-y-auto'>
+      <div className='h-[calc(100vh-64px-36px)] overflow-y-auto mb-3'>
         {loading ? (
           <Spinner />
         ) : (
