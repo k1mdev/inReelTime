@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
     const [species, setSpecies] = useState('');
+    // Default date was initially new Date()
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-    const [length, setLength] = useState(null);
-    const [weight, setWeight] = useState(null);
-    const [lure, setLure] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [length, setLength] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [lure, setLure] = useState('');
+    const [location, setLocation] = useState('');
     // const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const {enqueueSnackbar} = useSnackbar();

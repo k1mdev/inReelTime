@@ -31,7 +31,7 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
     return (
         <div
             key={catchLog._id}
-            className='border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl'
+            className='border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl select-none'
         >
             {/* <h2 className='absolute top-1 right-2 px-4 py-1 bg-red-300 rounded-lg'>
                 {catchLog.species}
@@ -45,31 +45,31 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                     {catchLog.species}
                 </h1>
             </div>
-            <div className='flex justify-start items-center gap-x-2'>
+            <div className='flex justify-start items-center gap-x-2 bg-red-400'>
                 <FaCalendar className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
                     {formatDate(catchLog.date)}
                 </h2>
             </div>
-            {catchLog.length && <div className='flex justify-start items-center gap-x-2'>
+            {catchLog.length != 0 && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
                 <FaRulerHorizontal className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
                     {catchLog.length}
                 </h2>
             </div>}
-            {catchLog.weight && <div className='flex justify-start items-center gap-x-2'>
+            {catchLog.weight != 0 && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
                 <FaScaleUnbalancedFlip className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
                     {catchLog.weight}
                 </h2>
             </div>}
-            {catchLog.lure && <div className='flex justify-start items-center gap-x-2'>
+            {catchLog.lure != '' && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
                 <GiFishingHook className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
                     {catchLog.lure}
                 </h2>
             </div>}
-            {catchLog.location && <div className='flex justify-start items-center gap-x-2'>
+            {catchLog.location != '' && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
                 <FaLocationDot className='text-red-300 text-2xl' />
                 <h2 className='my-1'>
                     {catchLog.location}

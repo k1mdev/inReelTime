@@ -33,11 +33,11 @@ const Home = ({selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
   return (
     <div className='h-[calc(100vh-64px)] p-0 flex flex-col'>
       <div className='flex justify-between items-center mt-4 mb-4'>
-        <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2'>
+        <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2 select-none'>
           {selectedDate == null && selectedMonthYear == null ? 'All Catches' : (selectedDate == null && selectedMonthYear != null ? selectedMonthYear : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options))}
         </span>
         <MdOutlineAddBox
-          className='text-sky-800 text-5xl mr-8'
+          className='text-sky-800 text-5xl mr-8 cursor-pointer'
           onClick={() => setShowCreateModal(true)}
         />
       </div>

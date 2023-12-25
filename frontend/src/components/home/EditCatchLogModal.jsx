@@ -4,11 +4,11 @@ import { useSnackbar } from 'notistack'
 
 const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }) => {
     const [species, setSpecies] = useState('');
-    const [date, setDate] = useState(new Date());
-    const [length, setLength] = useState(null);
-    const [weight, setWeight] = useState(null);
-    const [lure, setLure] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+    const [length, setLength] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [lure, setLure] = useState('');
+    const [location, setLocation] = useState('');
     // const [loading, setLoading] = useState(false);
     const id = catchLog._id;
     const {enqueueSnackbar} = useSnackbar();
@@ -58,6 +58,10 @@ const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }
           console.log(error);
         })
     };
+
+
+
+
   return (
     <div
         className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'

@@ -29,7 +29,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
 
     return (
         // Needs keys for nested layers
-        <div className='pl-4 py-2'>
+        <div className='pl-4 py-2 select-none'>
             {monthYrList.map((monthYr, monthYrindex) => (
                 <div>
                     {/* <br /> not needed bc <a> alr adds new line? */}
