@@ -39,54 +39,57 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
             {/* <h4 className='my-2 text-gray-500'>
                 {catchLog._id}
             </h4> */}
-            <div className='flex justify-center items-center bg-red-400'>
-                {/* <FaFish className='text-red-300 text-2xl' /> */}
-                <h1 className='my-1 text-lg'>
+
+            <div className='flex justify-between items-center mb-3'>
+                <h1 className='text-center text-2xl relative left-1/2 transform -translate-x-1/2'>
                     {catchLog.species}
                 </h1>
-            </div>
-            <div className='flex justify-start items-center gap-x-2 bg-red-400'>
-                <FaCalendar className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
-                    {formatDate(catchLog.date)}
-                </h2>
-            </div>
-            {catchLog.length != 0 && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
-                <FaRulerHorizontal className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
-                    {catchLog.length}
-                </h2>
-            </div>}
-            {catchLog.weight != 0 && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
-                <FaScaleUnbalancedFlip className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
-                    {catchLog.weight}
-                </h2>
-            </div>}
-            {catchLog.lure != '' && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
-                <GiFishingHook className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
-                    {catchLog.lure}
-                </h2>
-            </div>}
-            {catchLog.location != '' && <div className='flex justify-start items-center gap-x-2 bg-red-400'>
-                <FaLocationDot className='text-red-300 text-2xl' />
-                <h2 className='my-1'>
-                    {catchLog.location}
-                </h2>
-            </div>}
-            
-            <div className='flex justify-between items-center gap-x-2 mt-4 p-4'>
-                <AiOutlineEdit
-                    className='text-2xl text-yellow-600 hover:text-black cursor-pointer'
-                    onClick={() => setShowEditModal(true)}
-                />
+                <div className='flex space-x-1'>
+                    <AiOutlineEdit
+                            className='text-2xl text-yellow-600 hover:text-black cursor-pointer'
+                            onClick={() => setShowEditModal(true)}
+                    />
 
-                <MdOutlineDelete
-                    className='text-2xl text-red-600 hover:text-black cursor-pointer'
-                    onClick={() => setShowDeleteModal(true)}
-                />
+                    <MdOutlineDelete
+                        className='text-2xl text-red-600 hover:text-black cursor-pointer'
+                        onClick={() => setShowDeleteModal(true)}
+                    />
+                </div>
             </div>
+
+            <div className='flex flex-col justify-between h-[150px] mb-3'>
+                <div className='flex justify-start items-center gap-x-2'>
+                    <FaCalendar className='text-red-300 text-2xl' />
+                    <h2 className=''>
+                        {formatDate(catchLog.date)}
+                    </h2>
+                </div>
+                {catchLog.length != 0 && <div className='flex justify-start items-center gap-x-2'>
+                    <FaRulerHorizontal className='text-red-300 text-2xl' />
+                    <h2 className=''>
+                        {catchLog.length}
+                    </h2>
+                </div>}
+                {catchLog.weight != 0 && <div className='flex justify-start items-center gap-x-2'>
+                    <FaScaleUnbalancedFlip className='text-red-300 text-2xl' />
+                    <h2 className=''>
+                        {catchLog.weight}
+                    </h2>
+                </div>}
+                {catchLog.lure != '' && <div className='flex justify-start items-center gap-x-2'>
+                    <GiFishingHook className='text-red-300 text-2xl' />
+                    <h2 className=''>
+                        {catchLog.lure}
+                    </h2>
+                </div>}
+                {catchLog.location != '' && <div className='flex justify-start items-center gap-x-2'>
+                    <FaLocationDot className='text-red-300 text-2xl' />
+                    <h2 className=''>
+                        {catchLog.location}
+                    </h2>
+                </div>}
+            </div>
+            
             {showEditModal && (
                     <EditCatchLogModal setCatchLogs={setCatchLogs} catchLog={catchLog} onClose={() => setShowEditModal(false)} setShowEditModal={setShowEditModal}/>
             )}
