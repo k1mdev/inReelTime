@@ -14,10 +14,11 @@ const App = () => {
 
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedMonthYear, setSelectedMonthYear] = useState(null);
 
 
   const handleSelectDate = (date) => {
-    if (date == selectedDate) {
+    if (date == selectedDate || date == null) {
       setSelectedDate(null)
     }
     else {
@@ -28,7 +29,27 @@ const App = () => {
     // console.log("Selected date (App):", selectedDate);
   }
 
-  console.log("App Sel Date: ", selectedDate);
+  const handleSelectMonthYear = (monthYear) => {
+    if (monthYear == selectedMonthYear) {
+      setSelectedMonthYear(null)
+    }
+    else {
+      // Store selected month year as 'MMM YYYY'
+      setSelectedMonthYear(monthYear);
+    }
+  }
+
+
+  // console.log("App Sel Date: ", selectedDate);
+  // console.log("App Sel Mon Yr: ", selectedMonthYear);
+  // console.log("Condition is ", selectedDate == null && selectedMonthYear == null);
+  // console.log("Condition is ", selectedDate == null && selectedMonthYear != null);
+  // console.log(selectedDate == null && selectedMonthYear == null ? (
+  //   'All Catches') : (
+  //   selectedDate == null && selectedMonthYear != null) ? (
+  //   'Hi') : (
+  //   new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US')));
+
 
   return (
     <div>
@@ -36,10 +57,10 @@ const App = () => {
       <Header />
       <div className='flex'>
         {/* Prop drilling passing from here to Datebar to DatePicker */}
-        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate} /></span>
+        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} /></span>
         <span className='flex-1'>
           <Routes >
-          <Route path='/' element={<Home selectedDate={selectedDate}/>} />
+          <Route path='/' element={<Home selectedDate={selectedDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} />} />
           <Route path='/catches/create' element={<CreateCatchLog />} />
           <Route path='/catches/details/:id' element={<ShowCatchLog />} />
           <Route path='/catches/edit/:id' element={<EditCatchLogModal />} />

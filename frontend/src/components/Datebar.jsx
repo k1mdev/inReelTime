@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
-// import { GrPowerReset } from "react-icons/gr";
+import { GrPowerReset } from "react-icons/gr";
 
 
 import axios from 'Axios'
@@ -19,7 +19,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const Datebar = ({selectedDate, handleSelectDate}) => {
+const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelectMonthYear}) => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -69,7 +69,7 @@ const Datebar = ({selectedDate, handleSelectDate}) => {
       <div className='h-14 bg-sky-600 flex items-center justify-center'>
           <span className='mr-2'><label htmlFor="datePickerInput"><FaCalendarDays /></label></span>
           <DatePicker
-            className='w-[91px] pl-1'
+            className='w-[91px] pl-1 mr-2'
             id="datePickerInput"
             value={selectedDate == null ? '' : selectedDate}
             selected={date == null ? '' : date}
@@ -80,15 +80,19 @@ const Datebar = ({selectedDate, handleSelectDate}) => {
             onSelect={(date) => {
               setDate(date);
               handleSelectDate(date);
+              handleSelectMonthYear(null);
             }}
           />
-          {/* <GrPowerReset onClick={someHandleResetDate}/> */}
+          <GrPowerReset onClick={() => {
+            handleSelectDate(null);
+            handleSelectMonthYear(null);
+          }}/>
         </div>
         <div className='flex-1 overflow-y-auto'>
         {loading ? (
           <Spinner />
         ) : (
-          <DateList catchLogs={catchLogs} selectedDate={selectedDate} handleSelectDate={handleSelectDate}/>
+          <DateList catchLogs={catchLogs} selectedDate={selectedDate} handleSelectDate={handleSelectDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} />
         )}
         </div>
     </div>

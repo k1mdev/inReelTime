@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 
-const DateList = ({catchLogs, selectedDate, handleSelectDate}) => {
+const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear, handleSelectMonthYear }) => {
 
 
     const monthYrOptions = { month: 'short', year: 'numeric' };
@@ -25,21 +25,38 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate}) => {
         return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions);
     }));
     const monthYrList = [...monthYrSet];
+    console.log(monthYrList);
 
     return (
         // Needs keys for nested layers
         <div className='pl-4 py-2'>
             {monthYrList.map((monthYr, monthYrindex) => (
                 <div>
-                    {/* <br /> not needed bc <p> alr adds new line */}
-                    <p className='text-xl'>{monthYr}</p>
+                    {/* <br /> not needed bc <a> alr adds new line? */}
+                    <a className='text-xl text-green-600'
+                        onClick={() => {
+                            handleSelectMonthYear(monthYr);
+                            handleSelectDate(null);
+                        }}
+                        style={{fontWeight: monthYr == selectedMonthYear ? 'bold' : 'normal'}
+                    }>
+                            {monthYr}
+                    </a>
                     <div className='ml-6'>
                         {dateList.map((date, dateIndex) => (
                             new Date(`${date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == monthYr ?
                             <div>
                                 {/* Maybe use catchLog IDs as keys instead of list's */}
                                 {/* Format date from ISO YYYY-MM-DD to Weekday, MM DD, YYYY */}
-                                <a onClick={() => handleSelectDate(date)} style={{fontWeight: date == selectedDate ? 'bold' : 'normal'}}>{new Date(`${date}T00:00:00`).toLocaleDateString('en-US', dateOptions)}</a>
+                                <a
+                                    onClick={() => {
+                                        handleSelectDate(date);
+                                        handleSelectMonthYear(null);
+                                    }}
+                                    style={{fontWeight: date == selectedDate ? 'bold' : 'normal'}
+                                }>
+                                    {new Date(`${date}T00:00:00`).toLocaleDateString('en-US', dateOptions)}
+                                </a>
                                 {/* Also needs key, cannot be same as abv */}
                                 <br />
                             </div>

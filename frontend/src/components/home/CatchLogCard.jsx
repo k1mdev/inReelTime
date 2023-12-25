@@ -12,12 +12,18 @@ import { GiFishingHook } from "react-icons/gi";
 import CatchLogCardSingle from './CatchLogCardSingle'
 
 
-const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate}) => {
+const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
 
-  
+  const monthYrOptions = { month: 'short', year: 'numeric' };
+
+  catchLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   const unfiltered = [...catchLogs];
   // Comparison valid bc compares ISO to ISO format
-  const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
+  // const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
+
+  const filtered = selectedDate == null && selectedMonthYear == null ? unfiltered : (selectedDate == null && selectedMonthYear != null ? unfiltered.filter(catchLog => new Date(`${catchLog.date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == selectedMonthYear) : unfiltered.filter(catchLog => catchLog.date == selectedDate));
+
 
   if (filtered.length == 0) {
     return (
