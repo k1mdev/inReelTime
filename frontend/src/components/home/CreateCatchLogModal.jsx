@@ -7,17 +7,21 @@ import { useNavigate } from 'react-router-dom'
 const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
     const [species, setSpecies] = useState('');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-    const [length, setLength] = useState(0);
-    const [lure, setLure] = useState('');
+    const [length, setLength] = useState(null);
+    const [weight, setWeight] = useState(null);
+    const [lure, setLure] = useState(null);
+    const [location, setLocation] = useState(null);
     // const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const {enqueueSnackbar} = useSnackbar();
     const handleSaveCatchLog = () => {
         const data = {
-        species,
-        date,
-        length,
-        lure,
+          species,
+          date,
+          length,
+          weight,
+          lure,
+          location,
         };
         // setLoading(true);
         axios
@@ -52,49 +56,67 @@ const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
     >
         <div
             onClick={(e) => e.stopPropagation()}
-            className='w-[800px] max-w-full h-[700px] bg-white rounded-xl p-4 flex flex-col relative'
+            className='w-[800px] max-w-full h-[700px] bg-white rounded-xl p-4 flex flex-col justify-center'
         >
-            <div className='p-4'>
-                <h1 className='text-3xl my-4'>Create Catch</h1>
-                <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-                    <div className='my-4'>
-                    <label className='text-xl mr-4 text-gray-500'>Species</label>
-                    <input
-                        type='text'
-                        value={species}
-                        onChange={(e) => setSpecies(e.target.value)}
-                        className='border-2 border-gray-500 px-4 py-2 w-full'
+            <div className='p-0 flex flex-col space-y-8 mt-0 bg-yellow-00'>
+                <h1 className='text-3xl my-0 text-center bg-slate-00'>Create Catch</h1>
+                <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto bg-red-00'>
+                    <div className=' mb-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Species</label>
+                      <input
+                          type='text'
+                          value={species}
+                          onChange={(e) => setSpecies(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
                     />
                     </div>
-                    <div className='my-4'>
-                    <label className='text-xl mr-4 text-gray-500'>Date</label>
-                    <input
-                        type='date'
-                        value={date}
-                        // Saves date in ISO string format YYYY-MM-DD
-                        onChange={(e) => setDate(e.target.value)}
-                        className='border-2 border-gray-500 px-4 py-2 w-full'
-                    />
+                    <div className='my-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Date</label>
+                      <input
+                          type='date'
+                          value={date}
+                          // Saves date in ISO string format YYYY-MM-DD
+                          onChange={(e) => setDate(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
+                      />
                     </div>
-                    <div className='my-4'>
-                    <label className='text-xl mr-4 text-gray-500'>Length</label>
-                    <input
-                        type='number'
-                        value={length}
-                        onChange={(e) => setLength(e.target.value)}
-                        className='border-2 border-gray-500 px-4 py-2 w-full'
-                    />
+                    <div className='my-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Length (in)</label>
+                      <input
+                          type='number'
+                          value={length}
+                          onChange={(e) => setLength(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
+                      />
                     </div>
-                    <div className='my-4'>
-                    <label className='text-xl mr-4 text-gray-500'>Lure</label>
-                    <input
-                        type='text'
-                        value={lure}
-                        onChange={(e) => setLure(e.target.value)}
-                        className='border-2 border-gray-500 px-4 py-2 w-full'
-                    />
+                    <div className='my-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Weight (lb)</label>
+                      <input
+                          type='number'
+                          value={weight}
+                          onChange={(e) => setWeight(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
+                      />
                     </div>
-                    <button className='p-2 bg-sky-300 m-8' onClick={handleSaveCatchLog}>
+                    <div className='my-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Lure</label>
+                      <input
+                          type='text'
+                          value={lure}
+                          onChange={(e) => setLure(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
+                      />
+                    </div>
+                    <div className='my-1'>
+                      <label className='text-xl mr-4 text-gray-500'>Location</label>
+                      <input
+                          type='text'
+                          value={location}
+                          onChange={(e) => setLocation(e.target.value)}
+                          className='border-2 border-gray-500 px-4 py-2 w-full'
+                      />
+                    </div>
+                    <button className='mt-5 p-4 bg-sky-300 m-0 rounded-xl' onClick={handleSaveCatchLog}>
                     Save
                     </button>
                 </div>

@@ -19,7 +19,9 @@ router.post('/', async (request, response) => {
             species: request.body.species,
             date: request.body.date,
             length: request.body.length,
+            weight: request.body.weight,
             lure: request.body.lure,
+            location: request.body.location,
         }
 
         const catchLog = await CatchLog.create(newCatchLog);

@@ -21,7 +21,6 @@ const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate, selectedMonthYear,
   const unfiltered = [...catchLogs];
   // Comparison valid bc compares ISO to ISO format
   // const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
-
   const filtered = selectedDate == null && selectedMonthYear == null ? unfiltered : (selectedDate == null && selectedMonthYear != null ? unfiltered.filter(catchLog => new Date(`${catchLog.date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == selectedMonthYear) : unfiltered.filter(catchLog => catchLog.date == selectedDate));
 
 

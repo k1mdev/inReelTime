@@ -15,7 +15,15 @@ const catchLogSchema = mongoose.Schema(
             type: Number,
             required: false,
         },
+        weight: {
+            type: Number,
+            required: false,
+        },
         lure: {
+            type: String,
+            required: false,
+        },
+        location: {
             type: String,
             required: false,
         }
