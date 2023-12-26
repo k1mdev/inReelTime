@@ -44,7 +44,7 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                 <h1 className='text-center text-2xl relative left-1/2 transform -translate-x-1/2'>
                     {catchLog.species}
                 </h1>
-                <div className='flex space-x-1'>
+                {/* <div className='flex space-x-1'>
                     <AiOutlineEdit
                             className='text-2xl text-yellow-600 hover:text-black cursor-pointer'
                             onClick={() => setShowEditModal(true)}
@@ -54,10 +54,10 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                         className='text-2xl text-red-600 hover:text-black cursor-pointer'
                         onClick={() => setShowDeleteModal(true)}
                     />
-                </div>
+                </div> */}
             </div>
 
-            <div className='flex flex-col justify-between h-[150px] mb-3'>
+            <div className='flex flex-col space-y-1.5 h-[175px] mb-3'>
                 <div className='flex justify-start items-center gap-x-2'>
                     <FaCalendar className='text-red-300 text-2xl' />
                     <h2 className=''>
@@ -67,13 +67,13 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                 {catchLog.length != 0 && <div className='flex justify-start items-center gap-x-2'>
                     <FaRulerHorizontal className='text-red-300 text-2xl' />
                     <h2 className=''>
-                        {catchLog.length}
+                        {catchLog.length} in
                     </h2>
                 </div>}
                 {catchLog.weight != 0 && <div className='flex justify-start items-center gap-x-2'>
                     <FaScaleUnbalancedFlip className='text-red-300 text-2xl' />
                     <h2 className=''>
-                        {catchLog.weight}
+                        {catchLog.weight} lb
                     </h2>
                 </div>}
                 {catchLog.lure != '' && <div className='flex justify-start items-center gap-x-2'>
@@ -88,6 +88,17 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                         {catchLog.location}
                     </h2>
                 </div>}
+                <div className='flex space-x-6 absolute bottom-4 left-1/2 transform -translate-x-1/2'>
+                    <AiOutlineEdit
+                            className='text-2xl text-yellow-600 hover:text-black cursor-pointer'
+                            onClick={() => setShowEditModal(true)}
+                    />
+
+                    <MdOutlineDelete
+                        className='text-2xl text-red-600 hover:text-black cursor-pointer'
+                        onClick={() => setShowDeleteModal(true)}
+                    />
+                </div>
             </div>
             
             {showEditModal && (

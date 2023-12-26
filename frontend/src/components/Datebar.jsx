@@ -65,9 +65,9 @@ const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelec
 
   return (
     // 64px comes from h-16 = height: 64px of Header
-    <div className='flex flex-col w-60 h-[calc(100vh-64px)] bg-sky-300'>
-      <div className='h-14 bg-sky-600 flex items-center justify-center'>
-          <span className='mr-2'><label htmlFor="datePickerInput" className='cursor-pointer'><FaCalendarDays /></label></span>
+    <div className='flex flex-col w-60 h-[calc(100vh-64px)] bg-sky-300 border-r-2 border-black'>
+      <div className='h-14 bg-sky-600 flex items-center justify-center border-b-2 border-black'>
+          <span className='mr-2'><label htmlFor="datePickerInput" className='cursor-pointer text-3xl'><FaCalendarDays /></label></span>
           <DatePicker
             className='w-[91px] pl-1 mr-2 cursor-pointer'
             id="datePickerInput"
@@ -88,7 +88,7 @@ const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelec
               handleSelectDate(null);
               handleSelectMonthYear(null);
             }}
-            className='cursor-pointer'
+            className='cursor-pointer text-xl h-6 w-6 p-[1.5px] bg-white rounded-full hover:bg-gray-300 active:bg-blue-700'
           />
         </div>
         <div className='flex-1 overflow-y-auto'>

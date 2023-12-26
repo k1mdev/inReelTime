@@ -52,7 +52,7 @@ const App = () => {
 
 
   return (
-    <div>
+    <div className=''>
       {/* Prop drilling */}
       <Header />
       <div className='flex'>

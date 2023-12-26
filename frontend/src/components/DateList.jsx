@@ -33,7 +33,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
             {monthYrList.map((monthYr, monthYrindex) => (
                 <div>
                     {/* <br /> not needed bc <a> alr adds new line? */}
-                    <a className='text-xl text-green-600'
+                    <a className='text-xl'
                         onClick={() => {
                             handleSelectMonthYear(monthYr);
                             handleSelectDate(null);

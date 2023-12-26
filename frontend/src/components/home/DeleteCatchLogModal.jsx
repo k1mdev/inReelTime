@@ -25,8 +25,8 @@ const DeleteCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowDeleteMod
   }
 
   return (
-    <div
-        className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center'
+    <form
+        className='fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center select-none'
         onClick={onClose}
     >
         <div
@@ -47,7 +47,7 @@ const DeleteCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowDeleteMod
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     
   )
 }
