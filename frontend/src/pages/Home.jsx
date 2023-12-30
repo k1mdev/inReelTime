@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
+import { IoIosAddCircle } from "react-icons/io";
 import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
@@ -31,13 +32,14 @@ const Home = ({selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
 
   
   return (
-    <div className='h-[calc(100vh-64px)] p-0 flex flex-col'>
+    <div className='h-[calc(100vh-64px)] p-0 flex flex-col bg-white'>
       <div className='flex justify-between items-center mt-4 mb-4'>
-        <span className='text-center font-medium text-3xl relative left-1/2 transform -translate-x-1/2 select-none'>
+        <span className='text-center text-3xl relative left-1/2 transform -translate-x-1/2 select-none font-medium' style={{ fontFamily: 'Poppins, Verdana, sans-serif', color: '#061D33' }}>
           {selectedDate == null && selectedMonthYear == null ? 'All Catches' : (selectedDate == null && selectedMonthYear != null ? selectedMonthYear : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options))}
         </span>
-        <MdOutlineAddBox
-          className='text-sky-800 text-5xl mr-8 cursor-pointer'
+        <IoIosAddCircle
+          className='text-sky-900 text-5xl mr-8 cursor-pointer hover:text-black'
+          // style={{ color: '#0C3154' }}
           onClick={() => setShowCreateModal(true)}
         />
       </div>

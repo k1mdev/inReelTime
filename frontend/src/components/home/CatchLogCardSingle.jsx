@@ -31,7 +31,8 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
     return (
         <div
             key={catchLog._id}
-            className='border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl select-none'
+            className='border-2 border-gray-600 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl select-none'
+            style={{backgroundColor: '#E0FCFF'}}
         >
             {/* <h2 className='absolute top-1 right-2 px-4 py-1 bg-red-300 rounded-lg'>
                 {catchLog.species}
@@ -40,8 +41,8 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                 {catchLog._id}
             </h4> */}
 
-            <div className='flex justify-between items-center mb-3'>
-                <h1 className='text-center text-2xl relative left-1/2 transform -translate-x-1/2'>
+            <div className='flex justify-between items-center mb-1'>
+                <h1 className='text-center text-2xl relative left-1/2 transform -translate-x-1/2' style={{ color: '#081D2B'}}>
                     {catchLog.species}
                 </h1>
                 {/* <div className='flex space-x-1'>
@@ -57,33 +58,35 @@ const CatchLogCardSingle = ({ catchLogs, setCatchLogs, catchLog }) => {
                 </div> */}
             </div>
 
+            <div className='w-11/12 h-0.5 bg-gray-500 mx-auto mb-3'></div>
+
             <div className='flex flex-col space-y-1.5 h-[175px] mb-3'>
                 <div className='flex justify-start items-center gap-x-2'>
-                    <FaCalendar className='text-red-300 text-2xl' />
+                    <FaCalendar className='text-sky-800 text-2xl' />
                     <h2 className=''>
                         {formatDate(catchLog.date)}
                     </h2>
                 </div>
                 {catchLog.length != 0 && <div className='flex justify-start items-center gap-x-2'>
-                    <FaRulerHorizontal className='text-red-300 text-2xl' />
+                    <FaRulerHorizontal className='text-sky-800 text-2xl' />
                     <h2 className=''>
                         {catchLog.length} in
                     </h2>
                 </div>}
                 {catchLog.weight != 0 && <div className='flex justify-start items-center gap-x-2'>
-                    <FaScaleUnbalancedFlip className='text-red-300 text-2xl' />
+                    <FaScaleUnbalancedFlip className='text-sky-800 text-2xl' />
                     <h2 className=''>
                         {catchLog.weight} lb
                     </h2>
                 </div>}
                 {catchLog.lure != '' && <div className='flex justify-start items-center gap-x-2'>
-                    <GiFishingHook className='text-red-300 text-2xl' />
+                    <GiFishingHook className='text-sky-800 text-2xl' />
                     <h2 className=''>
                         {catchLog.lure}
                     </h2>
                 </div>}
                 {catchLog.location != '' && <div className='flex justify-start items-center gap-x-2'>
-                    <FaLocationDot className='text-red-300 text-2xl' />
+                    <FaLocationDot className='text-sky-800 text-2xl' />
                     <h2 className=''>
                         {catchLog.location}
                     </h2>

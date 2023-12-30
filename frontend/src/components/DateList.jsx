@@ -29,17 +29,18 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
 
     return (
         // Needs keys for nested layers
-        <div className='pl-4 py-2 select-none'>
+        <div className='pl-4 py-3 select-none text-white'>
             {monthYrList.map((monthYr, monthYrindex) => (
-                <div>
+                <div className='mb-2'>
                     {/* <br /> not needed bc <a> alr adds new line? */}
-                    <a className='text-xl'
-                        onClick={() => {
+                    <a className='text-xl cursor-pointer font-medium'
+                        onClick={(e) => {
+                            e.stopPropagation();
                             handleSelectMonthYear(monthYr);
                             handleSelectDate(null);
                         }}
-                        style={{fontWeight: monthYr == selectedMonthYear ? 'bold' : 'normal'}
-                    }>
+                        style={{fontWeight: monthYr == selectedMonthYear ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}}
+                    >
                             {monthYr}
                     </a>
                     <div className='ml-6'>
@@ -49,11 +50,13 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
                                 {/* Maybe use catchLog IDs as keys instead of list's */}
                                 {/* Format date from ISO YYYY-MM-DD to Weekday, MM DD, YYYY */}
                                 <a
-                                    onClick={() => {
+                                    className='cursor-pointer'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         handleSelectDate(date);
                                         handleSelectMonthYear(null);
                                     }}
-                                    style={{fontWeight: date == selectedDate ? 'bold' : 'normal'}
+                                    style={{fontWeight: date == selectedDate ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}
                                 }>
                                     {new Date(`${date}T00:00:00`).toLocaleDateString('en-US', dateOptions)}
                                 </a>
