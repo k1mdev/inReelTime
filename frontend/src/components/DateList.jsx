@@ -33,7 +33,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
             {monthYrList.map((monthYr, monthYrindex) => (
                 <div className='mb-2'>
                     {/* <br /> not needed bc <a> alr adds new line? */}
-                    <a className='text-xl cursor-pointer font-medium'
+                    <a className='text-xl cursor-pointer font-medium hover:text-black'
                         onClick={(e) => {
                             e.stopPropagation();
                             handleSelectMonthYear(monthYr);
@@ -50,7 +50,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
                                 {/* Maybe use catchLog IDs as keys instead of list's */}
                                 {/* Format date from ISO YYYY-MM-DD to Weekday, MM DD, YYYY */}
                                 <a
-                                    className='cursor-pointer'
+                                    className='cursor-pointer hover:text-black'
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleSelectDate(date);
