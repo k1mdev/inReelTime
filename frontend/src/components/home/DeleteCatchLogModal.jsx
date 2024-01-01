@@ -1,25 +1,15 @@
 import { React } from 'react'
 import axios from 'Axios'
-import { useSnackbar } from 'notistack'
 
-const DeleteCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowDeleteModal }) => {
-//   const [loading, setLoading] = useState(false);
+const DeleteCatchLogModal = ({ catchLog, onClose }) => {
   const id = catchLog._id;
-  const {enqueueSnackbar} = useSnackbar();
   const handleDeleteCatchLog = () => {
-    // setLoading(true);
     axios
       .delete(`http://localhost:5555/catchLogs/${id}`)
       .then(() => {
-        // setLoading(false);
-        setCatchLogs((prevLogs) => prevLogs.filter((catchLog) => catchLog._id !== id));
-        enqueueSnackbar('Catch deleted successfully', { variant: 'success' });
-        setShowDeleteModal(false);
+        window.location = '/';
       })
       .catch((error) => {
-        // setLoading(false);
-        // alert('An error occurred. Please check console.');
-        enqueueSnackbar('Error deleting catch', { variant: 'error' });
         console.log(error);
       });
   }
@@ -35,7 +25,6 @@ const DeleteCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowDeleteMod
         >
             <div className='p-4'>
                 <h1 className='text-3xl my-4'>Delete Catch</h1>
-                {/* {loading ? <Spinner /> : ''} */}
                 <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
                     <h3>Are you sure you want to delete this catch?</h3>
                     <button

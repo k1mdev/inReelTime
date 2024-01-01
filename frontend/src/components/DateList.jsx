@@ -1,10 +1,24 @@
-import { React } from 'react'
+import { React, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDate } from '../redux/selectedDateSlice';
 import { setMonthYear } from '../redux/selectedMonthYearSlice';
+import axios from 'Axios'
 
 
-const DateList = ({catchLogs}) => {
+
+const DateList = () => {
+
+    const [catchLogs, setCatchLogs] = useState([]);
+    useEffect(() => {
+        axios
+        .get('http://localhost:5555/catchLogs')
+        .then((response) => {
+            setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
 
     const selectedDate = useSelector(state => state.date.selectedDate);
     const dispatch = useDispatch();

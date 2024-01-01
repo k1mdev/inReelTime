@@ -1,7 +1,5 @@
-import { React, useEffect, useState, useRef } from 'react'
+import { React, useState, useRef } from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
-import { GrPowerReset } from "react-icons/gr";
-import axios from 'Axios'
 import Spinner from '../components/spinner'
 import DateList from './DateList';
 import DatePicker from "react-datepicker";
@@ -11,9 +9,6 @@ import { setDate } from '../redux/selectedDateSlice';
 import { setMonthYear } from '../redux/selectedMonthYearSlice';
 
 const Datebar = () => {
-  const [catchLogs, setCatchLogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const [dpDate, setDPDate] = useState('');
   const datePickerRef = useRef(null);
 
@@ -45,25 +40,7 @@ const Datebar = () => {
         // Store selected month year as 'MMM YYYY'
         setSelectedMonthYear(monthYear);
       }
-  }
-
-  // Is this necessary?
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get('http://localhost:5555/catchLogs')
-      .then((response) => {
-        setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
-        setLoading(false);
-        // Does this need window.location too?
-        // navigate('/') was originally abv but produced not defined warning
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, []);
-  
+  }  
 
   const resetDate = () => {
     handleSelectDate('');
@@ -95,11 +72,7 @@ const Datebar = () => {
       </div>
       <div className='w-11/12 h-0.5 mx-auto bg-blue-300'></div>
       <div className='flex-1 overflow-y-auto'>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <DateList catchLogs={catchLogs} />
-        )}
+        <DateList />
       </div>
     </div>
   )

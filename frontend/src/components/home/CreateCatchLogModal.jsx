@@ -1,13 +1,9 @@
 import { React } from 'react'
 import axios from 'Axios'
-import { useSnackbar } from 'notistack'
-import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
-    const navigate = useNavigate();
-    const {enqueueSnackbar} = useSnackbar();
+const CreateCatchLogModal = ({ onClose }) => {
 
     const initialValues = {
       species: '',
@@ -36,17 +32,9 @@ const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {
         axios
         .post('http://localhost:5555/catchLogs', values)
         .then(() => {
-            // May cause issues when creating new log and it's not inserted in the correct/default sorted order of logs
-            // Current method does not allow for deleting newly created log without page refresh and does not add new date to datebar
-            // Commenting out snackbar and uncommenting window location will revert to original method
-            setCatchLogs((prevLogs) => [...prevLogs, values]);
-            enqueueSnackbar('Catch created successfully', { variant: 'success' });
-            setShowCreateModal(false);
-            // window.location = '/';
-            // Can't use navigate like in reference bc it navigates to same (root) route which it's alr on
+            window.location = '/';
         })
         .catch((error) => {
-            enqueueSnackbar('Error creating catch', { variant: 'error' });
             console.log(error);
         })
     };

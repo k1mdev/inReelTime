@@ -1,68 +1,61 @@
 import { React, useEffect } from 'react'
 import axios from 'Axios'
-import { useSnackbar } from 'notistack'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }) => {
-    const id = catchLog._id;
-    const {enqueueSnackbar} = useSnackbar();
+const EditCatchLogModal = ({ catchLog, onClose }) => {
+  const id = catchLog._id;
+  const handleEditCatchLog = async (values) => {
+    axios
+      .put(`http://localhost:5555/catchLogs/${id}`, values)
+      .then(() => {
+          window.location = '/';
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
 
-    const initialValues = {
-      species: '',
-      // Saves date in ISO string format YYYY-MM-DD
-      date: new Date().toISOString().split('T')[0],
-      length: 0,
-      weight: 0,
-      lure: '',
-      location: ''
-    };
+  const initialValues = {
+    species: '',
+    // Saves date in ISO string format YYYY-MM-DD
+    date: new Date().toISOString().split('T')[0],
+    length: 0,
+    weight: 0,
+    lure: '',
+    location: ''
+  };
 
-    const validationSchema = Yup.object({
-      species: Yup.string()
-        .required('Species is required'),
-      date: Yup.string()
-        .required('Date is required'),
-      length: Yup.number()
-        .min(0, 'Please enter a valid length'),
-      weight: Yup.number()
-        .min(0, 'Please enter a valid weight'),
-      lure: Yup.string(),
-      location: Yup.string()
-    });
+  const validationSchema = Yup.object({
+    species: Yup.string()
+      .required('Species is required'),
+    date: Yup.string()
+      .required('Date is required'),
+    length: Yup.number()
+      .min(0, 'Please enter a valid length'),
+    weight: Yup.number()
+      .min(0, 'Please enter a valid weight'),
+    lure: Yup.string(),
+    location: Yup.string()
+  });
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5555/catchLogs/${id}`)
+      .then((response) => {
+        formik.setValues(response.data);
+      })
+      .catch((error) => {
+        alert('An error occurred. Please check console.');
+        console.log(error);
+      });
+  }, []);
 
-    useEffect(() => {
-      axios
-        .get(`http://localhost:5555/catchLogs/${id}`)
-        .then((response) => {
-          formik.setValues(response.data);
-        })
-        .catch((error) => {
-          alert('An error occurred. Please check console.');
-          console.log(error);
-        });
-    }, []);
-  
-    const handleEditCatchLog = async (values) => {
-      axios
-        .put(`http://localhost:5555/catchLogs/${id}`, values)
-        .then(() => {
-            setCatchLogs((prevLogs) => prevLogs.map((catchLog) => (catchLog._id === id ? {...catchLog, ...values} : catchLog)));
-            enqueueSnackbar('Catch updated successfully', { variant: 'success' });
-            setShowEditModal(false);
-        })
-        .catch((error) => {
-          enqueueSnackbar('Error updating catch', { variant: 'error' });
-          console.log(error);
-        })
-    };
-
-    const formik = useFormik({
-      initialValues,
-      validationSchema,
-      onSubmit: handleEditCatchLog
-    });
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleEditCatchLog
+  });
 
 
   return (

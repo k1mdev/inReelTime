@@ -1,32 +1,13 @@
-import { React, useEffect, useState } from 'react'
-import axios from 'Axios'
-import Spinner from '../components/spinner'
+import { React, useState } from 'react'
 import { IoIosAddCircle } from "react-icons/io";
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 import { useSelector } from 'react-redux'
 
 const Home = () => {
-  const [catchLogs, setCatchLogs] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const selectedDate = useSelector(state => state.date.selectedDate);
   const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
-  
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get('http://localhost:5555/catchLogs')
-      .then((response) => {
-        setCatchLogs(response.data.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, []);
-
   const options = { month: 'short', day: 'numeric', year: 'numeric' };
 
   
@@ -51,15 +32,10 @@ const Home = () => {
       {/* UPDATE */}
       {/* Subtracted additional 20px (manually guessed & checked) accounting for padding and new mb under "All Catches" row*/}
       <div className='h-[calc(100vh-64px-36px)] overflow-y-auto'>
-        {loading ? (
-          <Spinner />
-          ) : (
-          //prop drilling from here to CatchLogCard to CatchLogCardSingle to EditCatchLogModal/DeleteCatchLogModal, catchLogs needed only for first layer
-          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} />
-        )}
+        <CatchLogCard />
       </div>
       {showCreateModal && (
-        <CreateCatchLogModal setCatchLogs={setCatchLogs} onClose={() => setShowCreateModal(false)} setShowCreateModal={setShowCreateModal} />
+        <CreateCatchLogModal onClose={() => setShowCreateModal(false)}/>
       )}
     </div>
   )

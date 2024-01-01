@@ -1,9 +1,23 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import CatchLogCardSingle from './CatchLogCardSingle'
 import { useSelector } from 'react-redux'
+import axios from 'Axios'
 
 
-const CatchLogCard = ({catchLogs, setCatchLogs}) => {
+const CatchLogCard = () => {
+
+  const [catchLogs, setCatchLogs] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:5555/catchLogs')
+      .then((response) => {
+        setCatchLogs(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const selectedDate = useSelector(state => state.date.selectedDate);
   const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
 
@@ -28,7 +42,7 @@ const CatchLogCard = ({catchLogs, setCatchLogs}) => {
     return (
       <div className='grid justify-center px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
           {filtered.map((item) => (
-              <CatchLogCardSingle catchLogs={catchLogs} setCatchLogs={setCatchLogs} key={item._id} catchLog={item} />
+              <CatchLogCardSingle key={item._id} catchLog={item} />
           ))}
       </div>
     )
