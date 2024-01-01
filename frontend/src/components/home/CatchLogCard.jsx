@@ -1,19 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { PiBook, PiBookOpenTextLight } from 'react-icons/pi'
-import { BiUserCircle } from 'react-icons/bi'
-import { AiOutlineEdit } from 'react-icons/ai'
-import { BsInfoCircle } from 'react-icons/bs'
-import { MdOutlineDelete } from 'react-icons/md'
-import { FaFish } from "react-icons/fa6";
-import { FaCalendar } from "react-icons/fa6";
-import { FaRulerHorizontal } from "react-icons/fa6";
-import { GiFishingHook } from "react-icons/gi";
 import CatchLogCardSingle from './CatchLogCardSingle'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { setDate } from '../../redux/selectedDateSlice';
-import { setMonthYear } from '../../redux/selectedMonthYearSlice';
+import { useSelector } from 'react-redux'
 
 
 const CatchLogCard = ({catchLogs, setCatchLogs}) => {

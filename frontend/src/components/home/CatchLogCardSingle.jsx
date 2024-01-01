@@ -1,20 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { PiBook, PiBookOpenTextLight } from 'react-icons/pi'
-import { BiUserCircle } from 'react-icons/bi'
-import { BiShow } from 'react-icons/bi'
 import { AiOutlineEdit } from 'react-icons/ai'
-import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineDelete } from 'react-icons/md'
-import { FaFish } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa6";
 import { FaRulerHorizontal } from "react-icons/fa6";
 import { FaScaleUnbalancedFlip } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
 import { FaLocationDot } from "react-icons/fa6";
-
-import CatchLogModal from './CatchLogModal'
 import EditCatchLogModal from './EditCatchLogModal'
 import DeleteCatchLogModal from './DeleteCatchLogModal'
 

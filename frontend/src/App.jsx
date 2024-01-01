@@ -1,16 +1,13 @@
-import { React, useEffect, useState } from 'react'
+import { React } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import CreateCatchLog from './pages/CreateCatchLog'
 import ShowCatchLog from './pages/ShowCatchLog'
-import EditCatchLog from './pages/EditCatchLog'
 import DeleteCatchLog from './pages/DeleteCatchLog'
 import Header from './components/Header'
 import Datebar from './components/Datebar'
 import EditCatchLogModal from './components/home/EditCatchLogModal'
-import e from 'cors'
 
-import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
   return (

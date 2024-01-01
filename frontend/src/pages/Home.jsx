@@ -1,18 +1,10 @@
 import { React, useEffect, useState } from 'react'
 import axios from 'Axios'
 import Spinner from '../components/spinner'
-import { Link } from 'react-router-dom'
-import { AiOutlineEdit } from 'react-icons/ai'
-import { BsInfoCircle } from 'react-icons/bs'
-import { MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import { IoIosAddCircle } from "react-icons/io";
-import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { setDate } from '../redux/selectedDateSlice';
-import { setMonthYear } from '../redux/selectedMonthYearSlice';
+import { useSelector } from 'react-redux'
 
 const Home = () => {
   const [catchLogs, setCatchLogs] = useState([]);
@@ -36,9 +28,6 @@ const Home = () => {
   }, []);
 
   const options = { month: 'short', day: 'numeric', year: 'numeric' };
-
-
-
 
   
   return (

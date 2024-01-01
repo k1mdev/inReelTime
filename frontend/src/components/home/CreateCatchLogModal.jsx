@@ -1,9 +1,8 @@
 import { React } from 'react'
 import axios from 'Axios'
 import { useSnackbar } from 'notistack'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const CreateCatchLogModal = ({ setCatchLogs, onClose, setShowCreateModal }) => {

@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
-
 import configureStore from './redux/configureStore.js'
 import { Provider } from 'react-redux'
 

@@ -1,7 +1,7 @@
-import { React, useState, useEffect } from 'react'
+import { React, useEffect } from 'react'
 import axios from 'Axios'
 import { useSnackbar } from 'notistack'
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const EditCatchLogModal = ({ setCatchLogs, catchLog, onClose, setShowEditModal }) => {
