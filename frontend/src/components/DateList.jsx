@@ -1,7 +1,41 @@
 import { React, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../redux/selectedDateSlice';
+import { setMonthYear } from '../redux/selectedMonthYearSlice';
 
-const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear, handleSelectMonthYear }) => {
 
+const DateList = ({catchLogs}) => {
+
+    const selectedDate = useSelector(state => state.date.selectedDate);
+    const dispatch = useDispatch();
+    const setSelectedDate = (date) => {
+      dispatch(setDate(date));
+    }
+    const handleSelectDate = (date) => {
+        if (date == selectedDate || date == '') {
+          setSelectedDate('')
+        }
+        else {
+          // Store selected date as ISO string format YYYY-MM-DD
+          // IDET it needs the conversions, check the input and return formats
+          setSelectedDate(new Date(date).toISOString().split('T')[0]);
+        }
+        // console.log("Selected date (App):", selectedDate);
+    }
+
+    const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
+    const setSelectedMonthYear = (date) => {
+        dispatch(setMonthYear(date));
+    }
+    const handleSelectMonthYear = (monthYear) => {
+        if (monthYear == selectedMonthYear) {
+          setSelectedMonthYear('')
+        }
+        else {
+          // Store selected month year as 'MMM YYYY'
+          setSelectedMonthYear(monthYear);
+        }
+    }
 
     const monthYrOptions = { month: 'short', year: 'numeric' };
     const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
@@ -25,7 +59,6 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
         return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions);
     }));
     const monthYrList = [...monthYrSet];
-    console.log(monthYrList);
 
     return (
         // Needs keys for nested layers
@@ -37,7 +70,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
                         onClick={(e) => {
                             e.stopPropagation();
                             handleSelectMonthYear(monthYr);
-                            handleSelectDate(null);
+                            handleSelectDate('');
                         }}
                         style={{fontWeight: monthYr == selectedMonthYear ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}}
                     >
@@ -54,7 +87,7 @@ const DateList = ({catchLogs, selectedDate, handleSelectDate, selectedMonthYear,
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleSelectDate(date);
-                                        handleSelectMonthYear(null);
+                                        handleSelectMonthYear('');
                                     }}
                                     style={{fontWeight: date == selectedDate ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}
                                 }>

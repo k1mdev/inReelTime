@@ -1,8 +1,6 @@
 import { React, useEffect, useState, useRef } from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
-
-
 import axios from 'Axios'
 import Spinner from '../components/spinner'
 import { Link } from 'react-router-dom'
@@ -13,18 +11,48 @@ import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 import DateList from './DateList';
 import { useNavigate } from 'react-router-dom';
-
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../redux/selectedDateSlice';
+import { setMonthYear } from '../redux/selectedMonthYearSlice';
 
-
-const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelectMonthYear}) => {
+const Datebar = () => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [date, setDate] = useState(null);
+  const [dpDate, setDPDate] = useState('');
   const datePickerRef = useRef(null);
+
+  const selectedDate = useSelector(state => state.date.selectedDate);
+  const dispatch = useDispatch();
+  const setSelectedDate = (date) => {
+    dispatch(setDate(date));
+  }
+  const handleSelectDate = (date) => {
+      if (date == selectedDate || date == '') {
+        setSelectedDate('')
+      }
+      else {
+        // Store selected date as ISO string format YYYY-MM-DD
+        // IDET it needs the conversions, check the input and return formats
+        setSelectedDate(new Date(date).toISOString().split('T')[0]);
+      }
+  }
+
+  const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
+  const setSelectedMonthYear = (date) => {
+      dispatch(setMonthYear(date));
+  }
+  const handleSelectMonthYear = (monthYear) => {
+      if (monthYear == selectedMonthYear) {
+        setSelectedMonthYear('')
+      }
+      else {
+        // Store selected month year as 'MMM YYYY'
+        setSelectedMonthYear(monthYear);
+      }
+  }
 
   // Is this necessary?
   useEffect(() => {
@@ -43,33 +71,12 @@ const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelec
       });
   }, []);
   
-  const formatDate = (date) => {
-    if (date === null) {
-      return '';
-    }
-    if (date.length == 10 && date[2] == '/' && date[4] == '/') {
-      return date;
-    }
-    else if (date.length == 10 && date[4] == '-' && date[6] == '-')  {
-      const [year, month, day] = date.split('-');
-      return `${month}/${day}/${year}`;
-    }
-    else {
-      return date;
-    }
-  }
-
-
-  // useEffect(() => {
-  //   if (datePickerRef.current) {
-  //     datePickerRef.current.blur();
-  //   }
-  // }, [selectedDate]);
 
   const resetDate = () => {
-    handleSelectDate(null);
-    handleSelectMonthYear(null);
+    handleSelectDate('');
+    handleSelectMonthYear('');
   }
+
 
   return (
     // 64px comes from h-16 = height: 64px of Header
@@ -81,13 +88,13 @@ const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelec
             ref={datePickerRef}
             className='w-[91px] pl-1 mr-2 cursor-pointer rounded-lg'
             id="datePickerInput"
-            value={selectedDate == null ? '' : selectedDate}
-            selected={date == null ? '' : date}
+            value={selectedDate == '' ? '' : selectedDate}
+            selected={dpDate == '' ? '' : dpDate}
             onChange={(date) => {
               
-              setDate(date);
+              setDPDate(date);
               handleSelectDate(date);
-              handleSelectMonthYear(null);
+              handleSelectMonthYear('');
             }}
           />
         </div>
@@ -98,7 +105,7 @@ const Datebar = ({selectedDate, handleSelectDate, selectedMonthYear, handleSelec
         {loading ? (
           <Spinner />
         ) : (
-          <DateList catchLogs={catchLogs} selectedDate={selectedDate} handleSelectDate={handleSelectDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} />
+          <DateList catchLogs={catchLogs} />
         )}
       </div>
     </div>

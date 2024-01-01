@@ -10,10 +10,17 @@ import CatchLogsTable from '../components/home/CatchLogsTable'
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 
-const Home = ({selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../redux/selectedDateSlice';
+import { setMonthYear } from '../redux/selectedMonthYearSlice';
+
+const Home = () => {
   const [catchLogs, setCatchLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const selectedDate = useSelector(state => state.date.selectedDate);
+  const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
+  
   useEffect(() => {
     setLoading(true);
     axios
@@ -30,12 +37,15 @@ const Home = ({selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
 
   const options = { month: 'short', day: 'numeric', year: 'numeric' };
 
+
+
+
   
   return (
     <div className='h-[calc(100vh-64px)] p-0 flex flex-col bg-white'>
       <div className='flex justify-between items-center mt-4 mb-4'>
         <span className='text-center text-3xl relative left-1/2 transform -translate-x-1/2 select-none font-medium' style={{ fontFamily: 'Poppins, Verdana, sans-serif', color: '#061D33' }}>
-          {selectedDate == null && selectedMonthYear == null ? 'All Catches' : (selectedDate == null && selectedMonthYear != null ? selectedMonthYear : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options))}
+          {selectedDate == '' && selectedMonthYear == '' ? 'All Catches' : (selectedDate == '' && selectedMonthYear != '' ? selectedMonthYear : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options))}
         </span>
         <IoIosAddCircle
           className='text-sky-900 text-5xl mr-8 cursor-pointer hover:text-black'
@@ -56,7 +66,7 @@ const Home = ({selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
           <Spinner />
           ) : (
           //prop drilling from here to CatchLogCard to CatchLogCardSingle to EditCatchLogModal/DeleteCatchLogModal, catchLogs needed only for first layer
-          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} selectedDate={selectedDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} />
+          <CatchLogCard catchLogs={catchLogs} setCatchLogs={setCatchLogs} />
         )}
       </div>
       {showCreateModal && (

@@ -11,8 +11,14 @@ import { FaRulerHorizontal } from "react-icons/fa6";
 import { GiFishingHook } from "react-icons/gi";
 import CatchLogCardSingle from './CatchLogCardSingle'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../../redux/selectedDateSlice';
+import { setMonthYear } from '../../redux/selectedMonthYearSlice';
 
-const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate, selectedMonthYear, handleSelectMonthYear}) => {
+
+const CatchLogCard = ({catchLogs, setCatchLogs}) => {
+  const selectedDate = useSelector(state => state.date.selectedDate);
+  const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
 
   const monthYrOptions = { month: 'short', year: 'numeric' };
 
@@ -21,7 +27,7 @@ const CatchLogCard = ({catchLogs, setCatchLogs, selectedDate, selectedMonthYear,
   const unfiltered = [...catchLogs];
   // Comparison valid bc compares ISO to ISO format
   // const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
-  const filtered = selectedDate == null && selectedMonthYear == null ? unfiltered : (selectedDate == null && selectedMonthYear != null ? unfiltered.filter(catchLog => new Date(`${catchLog.date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == selectedMonthYear) : unfiltered.filter(catchLog => catchLog.date == selectedDate));
+  const filtered = selectedDate == '' && selectedMonthYear == '' ? unfiltered : (selectedDate == '' && selectedMonthYear != '' ? unfiltered.filter(catchLog => new Date(`${catchLog.date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == selectedMonthYear) : unfiltered.filter(catchLog => catchLog.date == selectedDate));
 
 
   if (filtered.length == 0) {

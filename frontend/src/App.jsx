@@ -10,57 +10,17 @@ import Datebar from './components/Datebar'
 import EditCatchLogModal from './components/home/EditCatchLogModal'
 import e from 'cors'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 const App = () => {
-
-
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedMonthYear, setSelectedMonthYear] = useState(null);
-
-
-  const handleSelectDate = (date) => {
-    if (date == selectedDate || date == null) {
-      setSelectedDate(null)
-    }
-    else {
-      // Store selected date as ISO string format YYYY-MM-DD
-      // IDET it needs the conversions, check the input and return formats
-      setSelectedDate(new Date(date).toISOString().split('T')[0]);
-    }
-    // console.log("Selected date (App):", selectedDate);
-  }
-
-  const handleSelectMonthYear = (monthYear) => {
-    if (monthYear == selectedMonthYear) {
-      setSelectedMonthYear(null)
-    }
-    else {
-      // Store selected month year as 'MMM YYYY'
-      setSelectedMonthYear(monthYear);
-    }
-  }
-
-
-  // console.log("App Sel Date: ", selectedDate);
-  // console.log("App Sel Mon Yr: ", selectedMonthYear);
-  // console.log("Condition is ", selectedDate == null && selectedMonthYear == null);
-  // console.log("Condition is ", selectedDate == null && selectedMonthYear != null);
-  // console.log(selectedDate == null && selectedMonthYear == null ? (
-  //   'All Catches') : (
-  //   selectedDate == null && selectedMonthYear != null) ? (
-  //   'Hi') : (
-  //   new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US')));
-
-
   return (
     <div className=''>
-      {/* Prop drilling */}
       <Header />
       <div className='flex'>
-        {/* Prop drilling passing from here to Datebar to DatePicker */}
-        <span className='flex-none'><Datebar selectedDate={selectedDate} handleSelectDate={handleSelectDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} /></span>
+        <span className='flex-none'><Datebar /></span>
         <span className='flex-1'>
           <Routes >
-          <Route path='/' element={<Home selectedDate={selectedDate} selectedMonthYear={selectedMonthYear} handleSelectMonthYear={handleSelectMonthYear} />} />
+          <Route path='/' element={<Home />} />
           <Route path='/catches/create' element={<CreateCatchLog />} />
           <Route path='/catches/details/:id' element={<ShowCatchLog />} />
           <Route path='/catches/edit/:id' element={<EditCatchLogModal />} />
