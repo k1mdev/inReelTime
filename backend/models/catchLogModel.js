@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const catchLogSchema = mongoose.Schema(
     {
+        user: {
+            type: String,
+            required: true,
+        },
         species: {
             type: String,
             required: true,

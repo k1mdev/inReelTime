@@ -3,42 +3,71 @@ import { IoIosAddCircle } from "react-icons/io";
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 import { useSelector } from 'react-redux'
+import Datebar from '../components/Datebar';
+import Bulletin from '../components/Bulletin';
+
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "Axios";
+import { ToastContainer, toast } from "react-toastify";
+
+import { useDispatch } from 'react-redux'
+import { setUser } from '../redux/curUserSlice';
 
 const Home = () => {
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const selectedDate = useSelector(state => state.date.selectedDate);
-  const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
 
-  
+  const navigate = useNavigate();
+  const [cookies, removeCookie] = useCookies([]);
+
+
+  var curUser = useSelector(state => state.user.curUser);
+  const dispatch = useDispatch();
+  const setCurUser = (id) => {
+    dispatch(setUser(id));
+  }
+
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/login");
+      }
+      const { data } = await axios.post(
+        "http://localhost:5555",
+        {},
+        { withCredentials: true }
+      );
+      const { status, user, userID } = data;
+      setCurUser(userID)
+      return status
+        ? toast(`Hello ${user}`, {
+            position: "top-right",
+          })
+        : (removeCookie("token"), navigate("/login"));
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+
+  // console.log(curUser);
+
+  const Logout = () => {
+    removeCookie("token");
+    navigate("/signup");
+  };
+
+
   return (
-    <div className='h-[calc(100vh-64px)] p-0 flex flex-col bg-white'>
-      <div className='flex justify-between items-center mt-4 mb-4'>
-        <span className='text-center text-3xl relative left-1/2 transform -translate-x-1/2 select-none font-medium' style={{ fontFamily: 'Poppins, Verdana, sans-serif', color: '#061D33' }}>
-          {selectedDate == '' && selectedMonthYear == '' ? 'All Catches' : (selectedDate == '' && selectedMonthYear != '' ? selectedMonthYear : new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', options))}
-        </span>
-        <IoIosAddCircle
-          className='text-sky-900 text-5xl mr-8 cursor-pointer hover:text-black'
-          // style={{ color: '#0C3154' }}
-          onClick={() => setShowCreateModal(true)}
-        />
-      </div>
-
-      {/* 64px comes from h-16 = height: 64px of Header */}
-      {/* (Removed) 100px is height of "Catch List" text row */}
-      {/* (Removed) 32px is height of table/card select */}
-      {/* 36px is height of "All Catches" text */}
-      {/* (Removed) 16px is padding distance, x2 for top and bottom */}
-      {/* UPDATE */}
-      {/* Subtracted additional 20px (manually guessed & checked) accounting for padding and new mb under "All Catches" row*/}
-      <div className='h-[calc(100vh-64px-36px)] overflow-y-auto'>
-        <CatchLogCard />
-      </div>
-      {showCreateModal && (
-        <CreateCatchLogModal onClose={() => setShowCreateModal(false)}/>
-      )}
+    <div className='flex'>
+      <span className='flex-none'>
+        <Datebar />
+      </span>
+      <span className='flex-1'>
+        <Bulletin />
+      </span>
     </div>
   )
+
 }
 
 export default Home

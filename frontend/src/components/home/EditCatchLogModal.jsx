@@ -2,12 +2,20 @@ import { React, useEffect } from 'react'
 import axios from 'Axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
+
 
 const EditCatchLogModal = ({ catchLog, onClose }) => {
+
+  const curUser = useSelector(state => state.user.curUser);
+  // console.log(curUser);
+
   const id = catchLog._id;
+
   const handleEditCatchLog = async (values) => {
+    // console.log({...values, user: curUser})
     axios
-      .put(`http://localhost:5555/catchLogs/${id}`, values)
+      .put(`http://localhost:5555/catchLogs/${id}`, {...values, user: curUser})
       .then(() => {
           window.location = '/';
       })

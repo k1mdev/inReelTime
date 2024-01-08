@@ -16,6 +16,7 @@ router.post('/', async (request, response) => {
         }
             
         const newCatchLog = {
+            user: request.body.user,
             species: request.body.species,
             date: request.body.date,
             length: request.body.length,

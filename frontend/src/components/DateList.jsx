@@ -13,6 +13,7 @@ const DateList = () => {
         axios
         .get('http://localhost:5555/catchLogs')
         .then((response) => {
+            // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs?
             setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
         })
         .catch((error) => {
@@ -78,7 +79,7 @@ const DateList = () => {
         // Needs keys for nested layers
         <div className='pl-4 py-3 select-none text-white'>
             {monthYrList.map((monthYr, monthYrindex) => (
-                <div className='mb-2'>
+                <div className='mb-2' key={monthYrindex}>
                     {/* <br /> not needed bc <a> alr adds new line? */}
                     <a className='text-xl cursor-pointer font-medium hover:text-black'
                         onClick={(e) => {
@@ -93,7 +94,7 @@ const DateList = () => {
                     <div className='ml-6'>
                         {dateList.map((date, dateIndex) => (
                             new Date(`${date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == monthYr ?
-                            <div>
+                            <div key={dateIndex}>
                                 {/* Maybe use catchLog IDs as keys instead of list's */}
                                 {/* Format date from ISO YYYY-MM-DD to Weekday, MM DD, YYYY */}
                                 <a
@@ -103,8 +104,8 @@ const DateList = () => {
                                         handleSelectDate(date);
                                         handleSelectMonthYear('');
                                     }}
-                                    style={{fontWeight: date == selectedDate ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}
-                                }>
+                                    style={{fontWeight: date == selectedDate ? 'bold' : 'normal', fontFamily: 'Poppins, Verdana, sans-serif'}}
+                                >
                                     {new Date(`${date}T00:00:00`).toLocaleDateString('en-US', dateOptions)}
                                 </a>
                                 {/* Also needs key, cannot be same as abv */}
