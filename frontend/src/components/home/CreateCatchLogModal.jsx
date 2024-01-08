@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 const CreateCatchLogModal = ({ onClose }) => {
 
     const curUser = useSelector(state => state.user.curUser);
-    // console.log(curUser);
 
     const initialValues = {
       species: '',
@@ -33,7 +32,6 @@ const CreateCatchLogModal = ({ onClose }) => {
     });
 
     const handleSaveCatchLog = async (values) => {
-        // console.log({...values, user: curUser})
         axios
         .post('http://localhost:5555/catchLogs', {...values, user: curUser})
         .then(() => {

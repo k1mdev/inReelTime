@@ -1,6 +1,5 @@
 import { React, useState, useRef } from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
-import Spinner from '../components/spinner'
 import DateList from './DateList';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -68,7 +67,6 @@ const Datebar = () => {
             }}
           />
         </div>
-        {/* <GrPowerReset onClick={resetDate} className='cursor-pointer text-xl h-6 w-6 p-[1.5px] bg-white rounded-full hover:bg-gray-300 active:bg-blue-700' /> */}
       </div>
       <div className='w-11/12 h-0.5 mx-auto bg-blue-300'></div>
       <div className='flex-1 overflow-y-auto'>

@@ -1,8 +1,6 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import axios from "Axios";
-import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux'
 import { setDate } from '../redux/selectedDateSlice';
 import { setMonthYear } from '../redux/selectedMonthYearSlice';
@@ -28,7 +26,6 @@ const LogOutButton = () => {
           // IDET it needs the conversions, check the input and return formats
           setSelectedDate(new Date(date).toISOString().split('T')[0]);
         }
-        // console.log("Selected date (App):", selectedDate);
     }
 
     const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
@@ -67,28 +64,6 @@ const LogOutButton = () => {
         setBackgroundColor('#001629');
     };
 
-
-    // useEffect(() => {
-    //     const verifyCookie = async () => {
-    //       if (!cookies.token) {
-    //         navigate("/login");
-    //       }
-    //       const { data } = await axios.post(
-    //         "http://localhost:5555",
-    //         {},
-    //         { withCredentials: true }
-    //       );
-    //       const { status, user } = data;
-    //       setUsername(user);
-    //       return status
-    //         ? toast(`Hello ${user}`, {
-    //             position: "top-right",
-    //           })
-    //         : (removeCookie("token"), navigate("/login"));
-    //     };
-    //     verifyCookie();
-    //   }, [cookies, navigate, removeCookie]);
-
     const handleLogOut = () => {
         removeCookie("token");
         navigate("/login");
@@ -96,7 +71,6 @@ const LogOutButton = () => {
         handleSelectDate('');
         handleSelectMonthYear('');
     };
-
 
 
     return (

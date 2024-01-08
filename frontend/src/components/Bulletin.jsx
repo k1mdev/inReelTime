@@ -3,7 +3,6 @@ import { IoIosAddCircle } from "react-icons/io";
 import CatchLogCard from '../components/home/CatchLogCard'
 import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
 import { useSelector } from 'react-redux'
-import Datebar from '../components/Datebar';
 
 const Bulletin = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);

@@ -29,19 +29,13 @@ const CatchLogCard = () => {
   catchLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // filter userLogs immediately after fetching?
-  // console.log("User: ", curUser);
   const unfiltered = [...catchLogs];
-  // console.log("Unfiltered: ", unfiltered);
   const userLogs = unfiltered.filter(catchLog => {
-    // console.log("Log's user: ", catchLog.user);
-    // console.log("Current user: ", curUser);
     if (catchLog.user == curUser) {
       return catchLog
     }
   });
-  // console.log("Userlogs: ", userLogs);
   // Comparison valid bc compares ISO to ISO format
-  // const filtered = selectedDate == null ? unfiltered : unfiltered.filter(catchLog => catchLog.date == selectedDate);
   const filtered = selectedDate == '' && selectedMonthYear == '' ? userLogs : (selectedDate == '' && selectedMonthYear != '' ? userLogs.filter(catchLog => new Date(`${catchLog.date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions) == selectedMonthYear) : userLogs.filter(catchLog => catchLog.date == selectedDate));
 
 

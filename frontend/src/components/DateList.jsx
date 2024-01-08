@@ -25,8 +25,6 @@ const DateList = () => {
     }, []);
 
     const userLogs = [...catchLogs].filter(catchLog => {
-        // console.log("Log's user: ", catchLog.user);
-        // console.log("Current user: ", curUser);
         if (catchLog.user == curUser) {
           return catchLog
         }
@@ -47,7 +45,6 @@ const DateList = () => {
           // IDET it needs the conversions, check the input and return formats
           setSelectedDate(new Date(date).toISOString().split('T')[0]);
         }
-        // console.log("Selected date (App):", selectedDate);
     }
 
     const selectedMonthYear = useSelector(state => state.monthYear.selectedMonthYear);
@@ -82,7 +79,6 @@ const DateList = () => {
     const yearList = [...yearSet];
 
     const monthYrSet = new Set (dateList.map((date) => {
-        // return `${months[date.substring(5, 7) - 1]} ${date.substring(0, 4)}`;
         return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', monthYrOptions);
     }));
     const monthYrList = [...monthYrSet];

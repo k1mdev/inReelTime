@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "Axios";
-import BackButton from "../components/home/BackButton";
-import { ToastContainer, toast } from "react-toastify";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -34,7 +32,6 @@ const Signup = () => {
       const { success, message } = data;
       if (success) {
         setSuccess(true);
-        // toast.success(message, { position: 'bottom-right' });
         setTimeout(() => {
           navigate('/');
         }, 1000);
@@ -142,7 +139,6 @@ const Signup = () => {
           </span>
         </form>
       </div>
-      {/* <ToastContainer /> */}
     </div>
   );
 };
