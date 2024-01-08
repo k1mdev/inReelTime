@@ -8,18 +8,30 @@ import axios from 'Axios'
 
 const DateList = () => {
 
+    var curUser = useSelector(state => state.user.curUser);
+    console.log(curUser);
+
     const [catchLogs, setCatchLogs] = useState([]);
     useEffect(() => {
         axios
         .get('http://localhost:5555/catchLogs')
         .then((response) => {
-            // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs?
+            // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs? compare to card view
             setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
         })
         .catch((error) => {
             console.log(error);
         });
     }, []);
+
+    const userLogs = [...catchLogs].filter(catchLog => {
+        // console.log("Log's user: ", catchLog.user);
+        // console.log("Current user: ", curUser);
+        if (catchLog.user == curUser) {
+          return catchLog
+        }
+      });
+    console.log(userLogs);
 
     const selectedDate = useSelector(state => state.date.selectedDate);
     const dispatch = useDispatch();
@@ -56,7 +68,7 @@ const DateList = () => {
     const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const dateSet = new Set(catchLogs.map((catchLog) => {
+    const dateSet = new Set(userLogs.map((catchLog) => {
         return catchLog.date;
 
     }));
