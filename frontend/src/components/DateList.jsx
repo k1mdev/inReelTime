@@ -8,13 +8,29 @@ import axios from 'Axios'
 
 const DateList = () => {
 
-    var curUser = useSelector(state => state.user.curUser);
-    console.log(curUser);
-
+    // When loaded, curUser is initially ''
+    const curUser = useSelector(state => state.user.curUser);
     const [catchLogs, setCatchLogs] = useState([]);
+    // console.log("User: ", curUser)
+
+    // Route for getting by ID
+    // useEffect(() => {
+    //   if (curUser != '') {
+    //     axios
+    //       .get(`http://localhost:5555/catchLogs/user/${curUser}`)
+    //       .then((response) => {
+    //         setCatchLogs(response.data.data);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    //   }
+    // }, [curUser]);
+
+    // Route for getting ALL
     useEffect(() => {
         axios
-        .get('http://localhost:5555/catchLogs')
+        .get(`http://localhost:5555/catchLogs`)
         .then((response) => {
             // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs? compare to card view
             setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
@@ -24,12 +40,12 @@ const DateList = () => {
         });
     }, []);
 
+    catchLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
     const userLogs = [...catchLogs].filter(catchLog => {
         if (catchLog.user == curUser) {
           return catchLog
         }
-      });
-    console.log(userLogs);
+    });
 
     const selectedDate = useSelector(state => state.date.selectedDate);
     const dispatch = useDispatch();
@@ -67,10 +83,9 @@ const DateList = () => {
 
     const dateSet = new Set(userLogs.map((catchLog) => {
         return catchLog.date;
-
     }));
     const dateList = [...dateSet];
-    dateList.sort((a, b) => new Date(b) - new Date(a));
+    // dateList.sort((a, b) => new Date(b) - new Date(a));
 
     const monthSet = new Set(dateList.map((date) => months[date.substring(5, 7) - 1]));
     const monthList = [...monthSet];

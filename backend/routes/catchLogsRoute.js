@@ -48,9 +48,24 @@ router.get("/", async (request, response) => {
         response.status(500).send({message: error.message});
     }
 });
+// Route for getting catches by user
+// router.get("/user/:curUser", async (request, response) => {
+//     try {
+//         const { curUser } = request.params;
+//         const catchLog = await CatchLog.find({user: curUser});
+//         return response.status(200).json({
+//             count: catchLog.length,
+//             data: catchLog,
+//         });
+//     }
+//     catch (error) {
+//         console.log(error.message);
+//         response.status(500).send({message: error.message});
+//     }
+// });
 
 // Route for getting one catch from DB by ID
-router.get("/:id", async (request, response) => {
+router.get("/id/:id", async (request, response) => {
     try {
         const { id } = request.params;
         const catchLog = await CatchLog.findById(id);

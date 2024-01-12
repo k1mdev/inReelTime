@@ -2,6 +2,7 @@ import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from '../redux/curUserSlice';
 import { setDate } from '../redux/selectedDateSlice';
 import { setMonthYear } from '../redux/selectedMonthYearSlice';
 
@@ -12,8 +13,15 @@ const LogOutButton = () => {
     const [backgroundColor, setBackgroundColor] = useState('#001629');
     const [cookies, removeCookie] = useCookies([]);
 
-    const selectedDate = useSelector(state => state.date.selectedDate);
     const dispatch = useDispatch();
+    
+    // Isn't necessary since subsequent logins auto adjusts redux state
+    const curUser = useSelector(state => state.user.curUser);
+    const setCurUser = (id) => {
+      dispatch(setUser(id));
+    }
+
+    const selectedDate = useSelector(state => state.date.selectedDate);
     const setSelectedDate = (date) => {
       dispatch(setDate(date));
     }
@@ -67,7 +75,8 @@ const LogOutButton = () => {
     const handleLogOut = () => {
         removeCookie("token");
         navigate("/login");
-        console.log("Logged Out");
+        // setCurUser not necessary
+        setCurUser('')
         handleSelectDate('');
         handleSelectMonthYear('');
     };
