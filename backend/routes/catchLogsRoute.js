@@ -65,6 +65,7 @@ router.get("/", async (request, response) => {
 // });
 
 // Route for getting one catch from DB by ID
+// /id/:id and /user/:user in place to avoid same paths when getting
 router.get("/id/:id", async (request, response) => {
     try {
         const { id } = request.params;
