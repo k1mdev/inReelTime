@@ -1,5 +1,5 @@
 import { React } from 'react'
-import axios from 'Axios'
+import axios from 'axios'
 
 const DeleteCatchLogModal = ({ catchLog, onClose }) => {
   const id = catchLog._id;

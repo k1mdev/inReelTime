@@ -1,5 +1,5 @@
 import { React } from 'react'
-import axios from 'Axios'
+import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
