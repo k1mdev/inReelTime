@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDate } from '../redux/selectedDateSlice';
 import { setMonthYear } from '../redux/selectedMonthYearSlice';
-import axios from 'Axios'
+import axios from 'axios'
 
 
 
