@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     console.log('Logged In');
     try {
-      const { data } = await axios.post('http://localhost:5555/login', values, {
+      const { data } = await axios.post('/api/login', values, {
         withCredentials: true,
       });
       const { success, message } = data;

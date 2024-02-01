@@ -13,7 +13,7 @@ const EditCatchLogModal = ({ catchLog, onClose }) => {
 
   const handleEditCatchLog = async (values) => {
     axios
-      .put(`http://localhost:5555/catchLogs/${id}`, {...values, user: curUser})
+      .put(`/api/catchLogs/${id}`, {...values, user: curUser})
       .then(() => {
           window.location = '/';
       })

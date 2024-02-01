@@ -28,7 +28,7 @@ const CatchLogCard = () => {
   // Route for getting ALL
   useEffect(() => {
     axios
-      .get(`http://localhost:5555/catchLogs`)
+      .get(`/api/catchLogs`)
       .then((response) => {
         setCatchLogs(response.data.data);
       })

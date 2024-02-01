@@ -33,7 +33,7 @@ const CreateCatchLogModal = ({ onClose }) => {
 
     const handleSaveCatchLog = async (values) => {
         axios
-        .post('http://localhost:5555/catchLogs', {...values, user: curUser})
+        .post('/api/catchLogs', {...values, user: curUser})
         .then(() => {
             window.location = '/';
         })

@@ -5,7 +5,7 @@ const DeleteCatchLogModal = ({ catchLog, onClose }) => {
   const id = catchLog._id;
   const handleDeleteCatchLog = () => {
     axios
-      .delete(`http://localhost:5555/catchLogs/${id}`)
+      .delete(`/api/catchLogs/${id}`)
       .then(() => {
         window.location = '/';
       })

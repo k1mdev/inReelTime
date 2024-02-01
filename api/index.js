@@ -41,8 +41,8 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/", authRoute);
-app.use("/catchLogs", catchLogsRoute);
+app.use("/api", authRoute);
+app.use("/api/catchLogs", catchLogsRoute);
 app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send("MERN Stack Intro");

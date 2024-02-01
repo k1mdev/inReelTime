@@ -30,7 +30,7 @@ const DateList = () => {
     // Route for getting ALL
     useEffect(() => {
         axios
-        .get(`http://localhost:5555/catchLogs`)
+        .get(`/api/catchLogs`)
         .then((response) => {
             // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs? compare to card view
             setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
