@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import CatchLogCardSingle from './CatchLogCardSingle'
 import { useSelector } from 'react-redux'
-import axios from 'Axios'
+import axios from 'axios'
 
 
 const CatchLogCard = () => {
