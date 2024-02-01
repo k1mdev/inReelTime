@@ -47,7 +47,7 @@ const EditCatchLogModal = ({ catchLog, onClose }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5555/catchLogs/id/${id}`)
+      .get(`/api/catchLogs/id/${id}`)
       .then((response) => {
         formik.setValues(response.data);
       })
