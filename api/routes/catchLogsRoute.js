@@ -1,10 +1,10 @@
 import express from "express";
 import { CatchLog } from "../models/catchLogModel.js";
 
-export const catchLogsRouter = express.Router();
+export const catchLogsRoute = express.Router();
 
 // Route for saving new Catch
-catchLogsRouter.post('/', async (request, response) => {
+catchLogsRoute.post('/', async (request, response) => {
     try {
         if (
             !request.body.species ||
@@ -35,7 +35,7 @@ catchLogsRouter.post('/', async (request, response) => {
 });
 
 // Route for getting all catches from DB
-catchLogsRouter.get("/", async (request, response) => {
+catchLogsRoute.get("/", async (request, response) => {
     try {
         const catchLog = await CatchLog.find({});
         return response.status(200).json({
@@ -49,7 +49,7 @@ catchLogsRouter.get("/", async (request, response) => {
     }
 });
 // Route for getting catches by user
-// catchLogsrouter.get("/user/:curUser", async (request, response) => {
+// catchLogsRoute.get("/user/:curUser", async (request, response) => {
 //     try {
 //         const { curUser } = request.params;
 //         const catchLog = await CatchLog.find({user: curUser});
@@ -66,7 +66,7 @@ catchLogsRouter.get("/", async (request, response) => {
 
 // Route for getting one catch from DB by ID
 // /id/:id and /user/:user in place to avoid same paths when getting
-catchLogsRouter.get("/id/:id", async (request, response) => {
+catchLogsRoute.get("/id/:id", async (request, response) => {
     try {
         const { id } = request.params;
         const catchLog = await CatchLog.findById(id);
@@ -79,7 +79,7 @@ catchLogsRouter.get("/id/:id", async (request, response) => {
 });
 
 // Route for updating catch
-catchLogsRouter.put("/:id", async (request, response) => {
+catchLogsRoute.put("/:id", async (request, response) => {
     try {
         if (
             !request.body.species ||
@@ -103,7 +103,7 @@ catchLogsRouter.put("/:id", async (request, response) => {
 });
 
 // Route for deleting catch
-catchLogsRouter.delete("/:id", async (request, response) => {
+catchLogsRoute.delete("/:id", async (request, response) => {
     try {
         const { id } = request.params;
         const result = await CatchLog.findByIdAndDelete(id);
