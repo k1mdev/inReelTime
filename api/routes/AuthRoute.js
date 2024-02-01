@@ -2,11 +2,10 @@ import { Signup, Login } from "../controllers/AuthController.js";
 import express from "express";
 import { userVerification } from "../middlewares/AuthMiddleware.js";
 
-const router = express.Router();
+export const authRouter = express.Router();
 
-router.post("/signup", Signup);
-router.post("/login", Login);
-router.post("/", userVerification)
+authRouter.post("/signup", Signup);
+authRouter.post("/login", Login);
+authRouter.post("/", userVerification)
 
 
-export default router;
