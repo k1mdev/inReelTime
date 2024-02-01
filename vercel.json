@@ -5,7 +5,7 @@
     "rewrites": [
         {
             "source": "/backend/(.*)",
-            "destination": "/index.js"
+            "destination": "/api/index.js"
         }
     ]
 }
