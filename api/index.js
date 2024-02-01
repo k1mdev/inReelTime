@@ -23,13 +23,6 @@ mongoose
         console.log(error);
     });
 
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5555"],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
 
 const corsOptions = {
     origin: 'http://localhost:5173',

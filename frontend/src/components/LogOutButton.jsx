@@ -15,7 +15,7 @@ const LogOutButton = () => {
 
     const dispatch = useDispatch();
     
-    // Isn't necessary since subsequent logins auto adjusts redux state
+    // Unnecessary since subsequent logins auto adjusts redux state
     const curUser = useSelector(state => state.user.curUser);
     const setCurUser = (id) => {
       dispatch(setUser(id));
@@ -31,7 +31,7 @@ const LogOutButton = () => {
         }
         else {
           // Store selected date as ISO string format YYYY-MM-DD
-          // IDET it needs the conversions, check the input and return formats
+          // Doesn't need the conversions, check the input and return formats
           setSelectedDate(new Date(date).toISOString().split('T')[0]);
         }
     }
@@ -75,7 +75,7 @@ const LogOutButton = () => {
     const handleLogOut = () => {
         removeCookie("token");
         navigate("/login");
-        // setCurUser not necessary
+        // Unnecessary
         setCurUser('')
         handleSelectDate('');
         handleSelectMonthYear('');

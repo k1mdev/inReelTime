@@ -22,7 +22,7 @@ const Datebar = () => {
       }
       else {
         // Store selected date as ISO string format YYYY-MM-DD
-        // IDET it needs the conversions, check the input and return formats
+        // Doesn't need the conversions, check the input and return formats
         setSelectedDate(new Date(date).toISOString().split('T')[0]);
       }
   }

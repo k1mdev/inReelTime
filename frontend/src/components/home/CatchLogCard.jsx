@@ -9,7 +9,6 @@ const CatchLogCard = () => {
   // When loaded, curUser is initially ''
   const curUser = useSelector(state => state.user.curUser);
   const [catchLogs, setCatchLogs] = useState([]);
-  // console.log("User: ", curUser)
 
   // Route for getting by ID
   // useEffect(() => {

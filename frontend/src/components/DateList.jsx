@@ -11,7 +11,6 @@ const DateList = () => {
     // When loaded, curUser is initially ''
     const curUser = useSelector(state => state.user.curUser);
     const [catchLogs, setCatchLogs] = useState([]);
-    // console.log("User: ", curUser)
 
     // Route for getting by ID
     // useEffect(() => {
@@ -32,7 +31,6 @@ const DateList = () => {
         axios
         .get(`/api/catchLogs`)
         .then((response) => {
-            // ??? this represents new logs when the window is refreshed and new logs are fetched, not from setting logs? compare to card view
             setCatchLogs((prevCatchLogs) => [...prevCatchLogs, ...response.data.data]);
         })
         .catch((error) => {
@@ -58,7 +56,7 @@ const DateList = () => {
         }
         else {
           // Store selected date as ISO string format YYYY-MM-DD
-          // IDET it needs the conversions, check the input and return formats
+          // Doesn't need the conversions, check the input and return formats
           setSelectedDate(new Date(date).toISOString().split('T')[0]);
         }
     }
@@ -85,7 +83,6 @@ const DateList = () => {
         return catchLog.date;
     }));
     const dateList = [...dateSet];
-    // dateList.sort((a, b) => new Date(b) - new Date(a));
 
     const monthSet = new Set(dateList.map((date) => months[date.substring(5, 7) - 1]));
     const monthList = [...monthSet];
@@ -103,7 +100,6 @@ const DateList = () => {
         <div className='pl-4 py-3 select-none text-white'>
             {monthYrList.map((monthYr, monthYrindex) => (
                 <div className='mb-2' key={monthYrindex}>
-                    {/* <br /> not needed bc <a> alr adds new line? */}
                     <a className='text-xl cursor-pointer font-medium hover:text-black'
                         onClick={(e) => {
                             e.stopPropagation();
@@ -131,7 +127,6 @@ const DateList = () => {
                                 >
                                     {new Date(`${date}T00:00:00`).toLocaleDateString('en-US', dateOptions)}
                                 </a>
-                                {/* Also needs key, cannot be same as abv */}
                                 <br />
                             </div>
                             :

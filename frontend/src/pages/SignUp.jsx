@@ -24,7 +24,6 @@ const Signup = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    console.log('Signed Up');
     try {
       const { data } = await axios.post('/api/signup', values, {
         withCredentials: true,

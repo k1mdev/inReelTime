@@ -18,7 +18,6 @@ const Bulletin = () => {
         </span>
         <IoIosAddCircle
             className='text-sky-900 text-5xl mr-10 cursor-pointer hover:text-black'
-            // style={{ color: '#0C3154' }}
             onClick={() => setShowCreateModal(true)}
         />
         </div>
