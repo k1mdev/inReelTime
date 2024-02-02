@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import { IoIosAddCircle } from 'react-icons/io'
 import { useSelector } from 'react-redux'
-import CatchLogCard from '../components/home/CatchLogCard'
+import CatchLogCard from '../components/CatchLogCard'
 import CreateCatchLogModal from './modals/CreateCatchLogModal'
 
 const Bulletin = () => {
