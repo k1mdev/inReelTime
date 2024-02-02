@@ -1,6 +1,6 @@
-import { Signup, Login } from "../controllers/AuthController.js";
-import express from "express";
-import { userVerification } from "../middlewares/AuthMiddleware.js";
+import { Signup, Login } from '../controllers/AuthController.js'
+import { userVerification } from '../middlewares/AuthMiddleware.js'
+import express from 'express'
 
 export const authRoute = express.Router();
 

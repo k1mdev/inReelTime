@@ -1,6 +1,6 @@
 import { React } from 'react'
-import LogOutButton from './LogOutButton'
 import { useLocation } from 'react-router-dom'
+import LogOutButton from './LogOutButton'
 
 const Header = () => {
 

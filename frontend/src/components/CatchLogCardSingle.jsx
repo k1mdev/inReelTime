@@ -1,13 +1,13 @@
 import { React, useState } from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { MdOutlineDelete } from 'react-icons/md'
-import { FaCalendar } from "react-icons/fa6";
-import { FaRulerHorizontal } from "react-icons/fa6";
-import { FaScaleUnbalancedFlip } from "react-icons/fa6";
-import { GiFishingHook } from "react-icons/gi";
-import { FaLocationDot } from "react-icons/fa6";
-import EditCatchLogModal from './EditCatchLogModal'
-import DeleteCatchLogModal from './DeleteCatchLogModal'
+import { FaCalendar } from 'react-icons/fa6'
+import { FaRulerHorizontal } from 'react-icons/fa6'
+import { FaScaleUnbalancedFlip } from 'react-icons/fa6'
+import { GiFishingHook } from 'react-icons/gi'
+import { FaLocationDot } from 'react-icons/fa6'
+import EditCatchLogModal from './modals/EditCatchLogModal'
+import DeleteCatchLogModal from './modals/DeleteCatchLogModal'
 
 const CatchLogCardSingle = ({ catchLog }) => {
     const [showEditModal, setShowEditModal] = useState(false);

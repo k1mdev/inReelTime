@@ -1,8 +1,8 @@
 import { React } from 'react'
+import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
+import * as Yup from 'yup'
 
 const CreateCatchLogModal = ({ onClose }) => {
 

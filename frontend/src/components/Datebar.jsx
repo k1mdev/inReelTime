@@ -1,11 +1,11 @@
 import { React, useState, useRef } from 'react'
-import { FaCalendarDays } from "react-icons/fa6";
-import DateList from './DateList';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarDays } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux'
-import { setDate } from '../redux/selectedDateSlice';
-import { setMonthYear } from '../redux/selectedMonthYearSlice';
+import { setDate } from '../redux/selectedDateSlice'
+import { setMonthYear } from '../redux/selectedMonthYearSlice'
+import 'react-datepicker/dist/react-datepicker.css'
+import DateList from './DateList'
+import DatePicker from 'react-datepicker'
 
 const Datebar = () => {
   const [dpDate, setDPDate] = useState('');

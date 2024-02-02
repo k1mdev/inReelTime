@@ -1,12 +1,11 @@
-import { React } from 'react'
-import Datebar from '../components/Datebar';
-import Bulletin from '../components/Bulletin';
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
+import { React, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../redux/curUserSlice';
+import { setUser } from '../redux/curUserSlice'
+import axios from 'axios'
+import Datebar from '../components/Datebar'
+import Bulletin from '../components/Bulletin'
 
 const Home = () => {
 

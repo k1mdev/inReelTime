@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
-import { IoIosAddCircle } from "react-icons/io";
-import CatchLogCard from '../components/home/CatchLogCard'
-import CreateCatchLogModal from '../components/home/CreateCatchLogModal'
+import { IoIosAddCircle } from 'react-icons/io'
 import { useSelector } from 'react-redux'
+import CatchLogCard from '../components/home/CatchLogCard'
+import CreateCatchLogModal from './modals/CreateCatchLogModal'
 
 const Bulletin = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);

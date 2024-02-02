@@ -1,5 +1,5 @@
-import express from "express";
-import { CatchLog } from "../models/catchLogModel.js";
+import { CatchLog } from '../models/catchLogModel.js'
+import express from 'express'
 
 export const catchLogsRoute = express.Router();
 

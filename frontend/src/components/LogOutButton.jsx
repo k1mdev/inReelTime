@@ -1,10 +1,10 @@
 import { React, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useCookies } from "react-cookie";
+import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from '../redux/curUserSlice';
-import { setDate } from '../redux/selectedDateSlice';
-import { setMonthYear } from '../redux/selectedMonthYearSlice';
+import { setUser } from '../redux/curUserSlice'
+import { setDate } from '../redux/selectedDateSlice'
+import { setMonthYear } from '../redux/selectedMonthYearSlice'
 
 
 const LogOutButton = () => {
