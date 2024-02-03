@@ -25,7 +25,7 @@ const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "/api",
+        "/",
         {},
         { withCredentials: true }
       );
