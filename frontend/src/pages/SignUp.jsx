@@ -32,7 +32,7 @@ const Signup = () => {
       if (success) {
         setSuccess(true);
         setTimeout(() => {
-          navigate('/');
+          navigate('/api');
         }, 1000);
       } else {
         setErrors({ general: message });

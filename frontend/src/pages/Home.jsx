@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        navigate("/api/login");
       }
       const { data } = await axios.post(
         "/api",
@@ -33,7 +33,7 @@ const Home = () => {
       setCurUser(userID)
       return status
         ? null
-        : (removeCookie("token"), navigate("/login"));
+        : (removeCookie("token"), navigate("/api/login"));
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
