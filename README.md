@@ -26,10 +26,10 @@ Most fishermen who log their catches either use MS Excel which may be too cumber
 6. To deselect a date or month, users click anywhere else within the date bar
 
 ## Implementation:
-* The frontend is built with React and Vite, styled with Tailwind\
+* Frontend is built with React and Vite, styled with Tailwind\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Redux manages the "global state" of the user's selected date or month\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Formik and Yup validate forms
 * Express middleware handles HTTP requests between frontend and backend
-* The user-entered information is stored in a MongoDB database
+* User-entered information is stored in a MongoDB database
 * User authentication is through JWT
 * Frontend and backend are hosted on Vercel
