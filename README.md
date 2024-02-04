@@ -2,7 +2,7 @@
 Full stack MERN web app for logging fishing catches
 
 ## Motivation:
-Most fishermen who log their catches either use MS Excel which may be too cumbersome for such a task, or use their phone to photograph their catches which omits details they may want to reference later. In Reel Time provides a simple web based solution for logging relevant catch details in a simplified UI locally on anglers' phones without occupying local storage.
+Most fishermen who log their catches either use MS Excel which may be too cumbersome for such a task, or use their phone to photograph their catches which omits details they may want to reference later. In Reel Time provides a simple web based solution for logging relevant catch details in a simplified UI locally on anglers' phones without occupying local storage. (Mobile styling in progress)
 
 ## Technologies:
 * Client\
